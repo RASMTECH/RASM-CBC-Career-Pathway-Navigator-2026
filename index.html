@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07131f">
+<title>CBC Career Pathway Navigator</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f7fb;color:#17202a}
+:root{--navy:#07131f;--blue:#0b5ed7;--green:#198754;--orange:#f59f00;--red:#dc3545;--border:#d9e1ec;--muted:#667085;--white:#fff}
+header{background:var(--navy);color:#fff;padding:16px;position:sticky;top:0;z-index:20;box-shadow:0 3px 12px #0002}
+.head{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:15px}.brand{display:flex;gap:12px;align-items:center}.logo{width:45px;height:45px;background:var(--blue);border-radius:10px;display:grid;place-items:center;font-size:23px}.brand h1{font-size:20px;margin:0}.brand small{opacity:.75}
+.container{max-width:1200px;margin:auto;padding:22px 15px 50px}.hero,.card{background:#fff;border:1px solid var(--border);border-radius:15px;box-shadow:0 6px 22px #0000000b}
+.hero{padding:28px;margin-bottom:18px}.hero h2{margin:0 0 8px;font-size:29px}.hero p{color:var(--muted);line-height:1.65}
+.steps{display:flex;gap:7px;overflow:auto;margin-bottom:15px}.step{white-space:nowrap;padding:9px 13px;border-radius:20px;background:#e8edf4;color:#536070;font-size:13px}.step.active{background:var(--blue);color:#fff}
+.card{padding:22px;margin-bottom:18px}.card h3{margin:0 0 15px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+label{font-weight:bold;display:block;margin-bottom:7px;font-size:14px}input,select,textarea{width:100%;padding:12px;border:1px solid var(--border);border-radius:9px;background:#fff;font-size:15px}textarea{min-height:110px;resize:vertical}
+.chips{display:flex;flex-wrap:wrap;gap:9px}.chip{border:1px solid var(--border);background:#fff;border-radius:22px;padding:9px 13px;cursor:pointer}.chip.selected{background:var(--blue);color:#fff;border-color:var(--blue)}
+.rating{display:grid;grid-template-columns:1fr 1fr;gap:12px}.rating-row{border:1px solid var(--border);padding:13px;border-radius:10px}.rating-row span{display:block;color:var(--muted);font-size:13px;margin-bottom:9px}.rating-btns{display:flex;gap:5px}.rating-btn{flex:1;border:1px solid var(--border);background:#fff;border-radius:7px;padding:7px;cursor:pointer}.rating-btn.selected{background:#07131f;color:#fff}
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.btn{border:0;border-radius:9px;padding:12px 17px;font-weight:bold;cursor:pointer;transition:.18s ease}
+.btn:hover{transform:translateY(-1px);box-shadow:0 5px 14px #0002}
+.btn:active{transform:translateY(0)}
+.btn:focus-visible,.chip:focus-visible,.rating-btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #8ec5ff;outline-offset:2px}
+.progress-wrap{margin:0 0 18px}.progress-meta{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:var(--muted);margin-bottom:7px}.progress{height:7px;background:#e7ecf2;border-radius:99px;overflow:hidden}.progress i{display:block;height:100%;background:var(--blue);transition:width .25s ease}
+.required{color:var(--red)}.field-help{font-size:12px;color:var(--muted);margin-top:5px}
+.result-toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.score-note{background:#eef8f2;border:1px solid #c9ead7;border-radius:10px;padding:12px;font-size:13px;line-height:1.5}
+.empty-state{text-align:center;padding:25px;border:1px dashed var(--border);border-radius:11px;color:var(--muted)}
+.primary{background:var(--blue);color:#fff}.secondary{background:#e8edf4;color:#17202a}.success{background:var(--green);color:#fff}
+.hidden{display:none!important}.notice{background:#fff7df;border-left:4px solid var(--orange);padding:13px;border-radius:7px;line-height:1.5}
+#results{display:none}.report-head{background:var(--navy);color:#fff;padding:25px;border-radius:15px;margin-bottom:18px}.report-head h2{margin:0 0 8px}.pathways{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.pathway{padding:18px;border:1px solid var(--border);border-radius:12px}.pathway.best{border:2px solid var(--green)}.pct{font-size:30px;font-weight:bold;margin:7px 0}.bar{height:9px;background:#e7ecf2;border-radius:8px;overflow:hidden}.bar i{display:block;height:100%;background:var(--blue)}
+.badge{display:inline-block;padding:5px 9px;border-radius:6px;background:#edf4ff;color:#0b4d9e;font-size:12px;font-weight:bold;margin:3px}.career-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.career{border:1px solid var(--border);border-radius:11px;padding:15px}.career h4{margin:0 0 7px}.career p{font-size:13px;color:var(--muted);line-height:1.5}.match{font-weight:bold;color:var(--green)}
+table{width:100%;border-collapse:collapse}th,td{padding:11px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}th{background:#f1f4f8}
+.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.info{border:1px solid var(--border);padding:14px;border-radius:10px}.info strong{display:block;margin-bottom:6px}.muted{color:var(--muted)}
+footer{text-align:center;color:var(--muted);padding:20px;font-size:12px}
+@media(max-width:800px){.grid3,.grid2,.pathways,.career-grid,.info-grid,.rating{grid-template-columns:1fr}.hero h2{font-size:24px}}
+
+.actor-view-btn{margin-top:10px;background:linear-gradient(135deg,#7c3aed,#ec4899);color:#fff;padding:9px 13px;border:0;border-radius:9px;font-weight:bold;cursor:pointer;box-shadow:0 4px 12px rgba(124,58,237,.18)}
+.actor-view-btn:hover{transform:translateY(-1px);box-shadow:0 7px 16px rgba(124,58,237,.24)}
+.actor-modal{position:fixed;inset:0;background:rgba(15,23,42,.72);display:flex;align-items:center;justify-content:center;padding:20px;z-index:1000}
+.actor-modal.hidden{display:none!important}
+.actor-modal-card{width:min(620px,100%);background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 25px 70px rgba(0,0,0,.3);position:relative}
+.actor-modal-head{padding:18px 22px;background:linear-gradient(135deg,#12233f,#7c3aed);color:#fff}
+.actor-modal-head h3{margin:0;font-size:21px}.actor-modal-head p{margin:5px 0 0;opacity:.85;font-size:13px}
+.actor-image-wrap{padding:18px;background:#f6f8fc;text-align:center}.actor-image-wrap img{display:block;width:100%;max-height:360px;object-fit:cover;border-radius:14px;border:1px solid #dbe4f0;background:#fff}
+.actor-close{position:absolute;right:14px;top:12px;border:0;background:rgba(255,255,255,.18);color:#fff;border-radius:50%;width:36px;height:36px;font-size:20px;cursor:pointer}.actor-modal-foot{padding:0 18px 18px;color:#64748b;font-size:12px;text-align:center}
+@media print{header,#assessment,.no-print,footer{display:none!important}body{background:#fff;color:#000}.container{padding:0;max-width:none}#results{display:block!important}#results>.report-head,#results>.card:not(#printCareersCard):not(#printCombinationsCard){display:none!important}#printCareersCard,#printCombinationsCard{display:block!important;border:0!important;box-shadow:none!important;padding:0!important;margin:0!important}.print-sheet{width:100%}.print-sheet h2{text-align:center;font-size:22px;margin:0 0 10px}.print-subtitle{text-align:center;font-size:12px;margin-bottom:15px}.print-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.print-item,.print-combo{border:1px solid #000;padding:10px;break-inside:avoid}.print-item h4{margin:0 0 6px;font-size:14px}.print-item p{margin:4px 0;font-size:12px}.print-combo{margin-bottom:10px}.print-combo strong{display:block;margin-bottom:5px}.print-combo .code{font-size:11px;margin-top:5px}}
+
+/* ===== Modern colourful UI refresh ===== */
+:root{--navy:#12233f;--blue:#2563eb;--blue2:#4f46e5;--green:#16a34a;--orange:#f59e0b;--red:#dc2626;--purple:#7c3aed;--teal:#0f766e;--border:#dbe4f0;--muted:#64748b;--white:#fff;--bg:#f6f8fc}
+body{background:linear-gradient(180deg,#eef5ff 0,#f8fafc 42%,#f6f8fc 100%);color:#172033}
+header{background:linear-gradient(135deg,#12233f,#1e3a8a 58%,#4f46e5);box-shadow:0 6px 24px rgba(37,99,235,.18)}
+.logo{background:linear-gradient(135deg,#38bdf8,#6366f1);box-shadow:0 8px 18px rgba(0,0,0,.18)}
+.hero{background:linear-gradient(135deg,#ffffff 0%,#eff6ff 55%,#f5f3ff 100%);border-color:#d9e6fb;box-shadow:0 12px 32px rgba(30,64,175,.08)}
+.hero h2{background:linear-gradient(90deg,#1d4ed8,#7c3aed);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card{border-color:#dce6f2;box-shadow:0 8px 28px rgba(30,64,175,.07);transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{box-shadow:0 12px 34px rgba(30,64,175,.10)}
+.steps .step{background:#e9eef7}.steps .step.active{background:linear-gradient(135deg,#2563eb,#4f46e5);box-shadow:0 5px 14px rgba(37,99,235,.22)}
+input,select,textarea{border-color:#d6e0ec;background:#fbfdff}input:focus,select:focus,textarea:focus{border-color:#7aa7ff;box-shadow:0 0 0 4px rgba(37,99,235,.08)}
+.chip{border-color:#d7e1ee;background:#fff;box-shadow:0 2px 7px rgba(15,23,42,.04)}
+.chip:hover{border-color:#93b4ff;background:#f5f8ff}.chip.selected{background:linear-gradient(135deg,#2563eb,#4f46e5);border-color:transparent;box-shadow:0 5px 12px rgba(37,99,235,.18)}
+.rating-row{background:linear-gradient(180deg,#fff,#f8fbff)}
+.rating-btn.selected{background:linear-gradient(135deg,#12233f,#2563eb)}
+.btn{border-radius:10px;box-shadow:0 3px 9px rgba(15,23,42,.07)}
+.primary{background:linear-gradient(135deg,#2563eb,#4f46e5)}.success{background:linear-gradient(135deg,#16a34a,#0f766e)}
+.whatsapp-btn{background:linear-gradient(135deg,#25d366,#16a34a);color:#fff}.whatsapp-btn:hover{box-shadow:0 6px 16px rgba(22,163,74,.25)}
+.section-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+.pathway{background:linear-gradient(180deg,#fff,#f8fbff);border-color:#dce6f2}.pathway.best{border-color:#22c55e;box-shadow:0 8px 22px rgba(34,197,94,.10)}
+.bar i{background:linear-gradient(90deg,#2563eb,#7c3aed)}
+.career{background:linear-gradient(180deg,#fff,#fbfdff);border-color:#dce6f2;position:relative;overflow:hidden}.career:before{content:"";display:block;height:4px;background:linear-gradient(90deg,#2563eb,#7c3aed,#ec4899);position:absolute;left:0;right:0;top:0}.career:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(30,64,175,.10)}
+.badge{background:#eef4ff;color:#244ea5}.score-note{background:#effaf3;border-color:#ccebd7}
+.info{background:linear-gradient(135deg,#fff,#f8fbff)}
+.notice{background:linear-gradient(90deg,#fff8df,#fffdf4)}
+.report-head{background:linear-gradient(135deg,#12233f,#1d4ed8 65%,#7c3aed);box-shadow:0 10px 28px rgba(30,64,175,.18)}
+.result-toolbar{background:rgba(255,255,255,.55)}
+footer{color:#64748b}
+@media(max-width:800px){.hero{padding:21px}.card{padding:18px}.section-actions{flex-direction:column}.section-actions .btn{width:100%}}
+@media print{
+  @page{size:A4;margin:14mm}
+  html,body{background:#fff!important;color:#111!important}
+  body{font-family:Arial,Helvetica,sans-serif}
+  header,#assessment,.no-print,footer,#results>.report-head,#results>.card:not(#printCareersCard):not(#printCombinationsCard){display:none!important}
+  .container,#results{display:block!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important}
+  #printCareersCard,#printCombinationsCard{display:none!important;border:0!important;box-shadow:none!important;background:#fff!important;margin:0!important;padding:0!important}
+  body.print-careers #printCareersCard{display:block!important}
+  body.print-combinations #printCombinationsCard{display:block!important}
+  .print-sheet{width:100%!important;padding:0!important}
+  .print-header{display:block!important;text-align:center;border-bottom:3px solid #2563eb;padding:0 0 12px;margin-bottom:16px}
+  .print-header .print-logo{font-size:25px;margin-bottom:4px}
+  .print-header h2{margin:0;color:#12233f;font-size:21px;letter-spacing:.2px}
+  .print-header .print-subtitle{margin:6px 0 0;color:#475569;font-size:11px}
+  .print-header .print-label{display:inline-block;margin-top:8px;padding:4px 10px;border-radius:20px;background:#eff6ff;color:#1d4ed8;font-size:10px;font-weight:700}
+  .print-list{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .print-item,.print-combo{border:1px solid #cbd5e1!important;border-radius:8px!important;padding:10px!important;background:#fff!important;break-inside:avoid;page-break-inside:avoid}
+  .print-item h4{font-size:12.5px;margin:0 0 7px;color:#12233f}.print-item p{font-size:10.5px;margin:4px 0;color:#334155}.print-combo{font-size:10.5px;margin-bottom:10px}.print-combo strong{font-size:12px;color:#12233f;display:block;margin-bottom:5px}.print-combo .code{font-size:10px;color:#64748b;margin-top:6px}
+  #printCombinationsList{display:block!important}
+  .print-footer{display:block!important;margin-top:18px;padding-top:8px;border-top:1px solid #cbd5e1;text-align:center;font-size:9px;color:#64748b}
+}
+
+</style>
+</head>
+<body>
+<header><div class="head"><div class="brand"><div class="logo">🎓</div><div><h1>CBC Career Pathway Navigator</h1><small>Learner Career Guidance & Pathway Assessment</small></div></div><button class="btn secondary no-print" onclick="window.print()">🖨 Print</button></div></header>
+
+<div class="container">
+<section class="hero">
+<h2>Discover Your Career Direction</h2>
+<p>Answer the questions honestly. The system combines interests, strengths, favourite subjects and preferred activities to estimate the most suitable pathway, track and career areas.</p>
+<div class="notice"><b>Guidance note:</b> This is an orientation tool, not an official placement decision. Senior-school subject availability and exact combinations can vary by school and current Ministry guidance.</div>
+</section>
+
+<div id="assessment">
+<div class="steps"><div class="step active">1 Learner</div><div class="step">2 Interests</div><div class="step">3 Strengths</div><div class="step">4 Activities</div><div class="step">5 Subjects</div><div class="step">6 Results</div></div>
+
+<section class="card">
+<h3>1. Learner Information</h3>
+<div class="grid3">
+<div><label>Name <span class="required">*</span></label><input id="name" placeholder="Learner name" autocomplete="name"><div class="field-help">Used only on this report.</div></div>
+<div><label>Grade <span class="required">*</span></label><select id="grade"><option value="">Select grade</option><option>Grade 7</option><option>Grade 8</option><option>Grade 9</option></select></div>
+<div><label>School</label><input id="school" placeholder="School name" autocomplete="organization"></div>
+</div>
+</section>
+
+<section class="card">
+<h3>2. What Do You Enjoy?</h3>
+<label>Describe freely</label>
+<textarea id="freeText" placeholder="Example: I enjoy computers, solving mathematics problems, repairing machines and building things."></textarea>
+<label style="margin-top:15px">Select as many as apply</label>
+<div class="chips" id="interestChips"></div>
+</section>
+
+<section class="card">
+<h3>3. What Are You Naturally Good At?</h3>
+<p class="muted">Rate yourself from 1 (not much) to 5 (very strong).</p>
+<div class="rating" id="strengths"></div>
+</section>
+
+<section class="card">
+<h3>4. Activities You Prefer</h3>
+<div class="chips" id="activityChips"></div>
+</section>
+
+<section class="card">
+<h3>5. Subjects You Like</h3>
+<div class="chips" id="subjectChips"></div>
+</section>
+
+<section class="card">
+<h3>6. Work Style</h3>
+<p class="muted">These preferences are combined with interests, activities, strengths and favourite subjects to guide the learner's pathway report.</p>
+<div class="grid3">
+<div><label>Where would you enjoy working?</label><select id="environment">
+<option value="">Choose</option><option value="technology">Technology / laboratory</option><option value="office">Office / business</option><option value="community">Community / people</option><option value="studio">Studio / creative space</option><option value="field">Outdoor / field</option><option value="sports">Sports / fitness environment</option><option value="workshop">Workshop / practical environment</option><option value="hospital">Hospital / health environment</option><option value="school">School / learning environment</option><option value="media">Media / broadcasting environment</option><option value="farm">Farm / agricultural environment</option><option value="travel">Travel / tourism environment</option><option value="court">Court / legal environment</option>
+</select></div>
+<div><label>What motivates you most?</label><select id="motivation">
+<option value="">Choose</option><option value="solve">Solving difficult problems</option><option value="help">Helping people</option><option value="create">Creating things</option><option value="lead">Leading others</option><option value="compete">Competition and performance</option><option value="discover">Discovering how things work</option><option value="business">Making/building a business</option><option value="communicate">Communicating ideas</option><option value="protect">Protecting people/nature</option><option value="organise">Organising people/events</option><option value="innovate">Inventing and innovating</option>
+</select></div>
+<div><label>How do you prefer to work?</label><select id="workPreference">
+<option value="">Choose</option><option value="independent">Independently</option><option value="team">In a team</option><option value="handsOn">Hands-on / practical</option><option value="research">Research and analysis</option><option value="people">Directly with people</option><option value="creative">Creatively</option><option value="leadership">Leading others</option><option value="active">Active / physically involved</option>
+</select></div>
+</div>
+<div class="grid3" style="margin-top:14px">
+<div><label>What kind of impact would you like to make?</label><select id="impact">
+<option value="">Choose</option><option value="innovation">Create new solutions</option><option value="health">Improve health and wellbeing</option><option value="education">Educate and develop others</option><option value="community">Strengthen communities</option><option value="business">Create jobs / businesses</option><option value="environment">Protect the environment</option><option value="creative">Entertain or inspire people</option><option value="performance">Improve sports performance</option>
+</select></div>
+<div><label>How do you like solving problems?</label><select id="problemStyle">
+<option value="">Choose</option><option value="analytical">Using logic/data</option><option value="practical">Testing and building</option><option value="people">Understanding people</option><option value="creative">Using imagination/design</option><option value="strategic">Planning and leading</option><option value="research">Investigating causes</option>
+</select></div>
+<div><label>How much variety do you prefer?</label><select id="variety">
+<option value="">Choose</option><option value="routine">Predictable routine</option><option value="balanced">A mix of routine and variety</option><option value="varied">New challenges often</option><option value="adventure">Highly varied / adventurous</option>
+</select></div>
+</div>
+<div class="actions"><button class="btn primary" onclick="generate()">🚀 Generate My Career Report</button><button class="btn secondary" onclick="resetAll()">Clear</button></div><p class="field-help">Tip: selecting several interests, activities and strengths produces a more useful comparison.</p>
+</section>
+</div>
+
+<section id="results">
+<div id="printCareersCard" class="card hidden"><div class="print-sheet"><div class="print-header"><div class="print-logo">🎓</div><h2>Recommended Careers</h2><p class="print-subtitle" id="printCareerSubtitle"></p><span class="print-label">CBC CAREER PATHWAY GUIDANCE REPORT</span></div><div id="printCareersList" class="print-list"></div></div></div>
+<div id="printCombinationsCard" class="card hidden"><div class="print-sheet"><h2>Recommended Grade 10 Subject Combinations</h2><p class="print-subtitle" id="printCombinationSubtitle"></p><div id="printCombinationsList" class="print-combos"></div></div></div>
+<div class="report-head"><h2>Career Guidance Report</h2><div id="learnerSummary"></div></div>
+<div class="result-toolbar no-print">
+  <div class="score-note">Match scores are guidance estimates based on your answers, not admission probabilities or official placement scores.</div>
+  <button class="btn secondary" onclick="saveReport()">💾 Save Report</button>
+</div>
+
+<div class="card"><h3>📊 Pathway Compatibility</h3><div class="pathways" id="pathwayCards"></div></div>
+
+<div class="card"><h3>🏆 Recommended Direction</h3><div class="info-grid"><div class="info"><strong>Pathway</strong><span id="bestPathway"></span></div><div class="info"><strong>Track</strong><span id="bestTrack"></span></div></div><p id="reason" class="muted" style="margin-top:15px"></p></div>
+
+<div class="card"><h3>💼 Recommended Careers</h3><input id="careerSearch" placeholder="Search careers..." oninput="renderCareers()"><div class="career-grid" id="careers" style="margin-top:13px"></div><div class="section-actions no-print"><button class="btn primary" onclick="printRecommendedCareers()">🖨 Print Recommended Careers</button><button class="btn whatsapp-btn" onclick="shareCareersWhatsApp()">🟢 Share Careers on WhatsApp</button></div></div>
+
+<div class="card"><h3>📚 Recommended Subject Areas</h3><table><thead><tr><th>Subject / area</th><th>Why it is useful</th></tr></thead><tbody id="subjects"></tbody></table></div>
+
+<div class="card"><h3>🎓 Related Course / Training Areas</h3><div id="courses" class="chips"></div></div>
+<div class="card"><h3>🧩 Recommended Grade 10 Subject Combinations</h3>
+<p class="muted">The navigator ranks official Grade 10 subject combinations rather than inventing new combinations. Availability varies by school, so confirm the combination in the official Grade 10 Selection System.</p>
+<div id="combinations"></div><div class="section-actions no-print"><button class="btn primary" onclick="printSubjectCombinations()">🖨 Print Subject Combinations</button><button class="btn whatsapp-btn" onclick="shareCombinationsWhatsApp()">🟢 Share Combinations on WhatsApp</button></div></div>
+
+<div class="card"><h3>🔄 Alternative Pathways</h3><div id="alternatives"></div></div>
+
+<div class="card"><h3>🧭 Learner Development Advice</h3><ul id="advice"></ul></div>
+<div class="actions no-print"><button class="btn primary" onclick="window.print()">🖨 Print / Save PDF</button><button class="btn secondary" onclick="document.getElementById('assessment').scrollIntoView()">← Change Answers</button></div>
+</section>
+</div>
+<div id="actorModal" class="actor-modal hidden" role="dialog" aria-modal="true" aria-labelledby="actorModalTitle" onclick="if(event.target===this) closeActorImage()">
+  <div class="actor-modal-card">
+    <div class="actor-modal-head"><button class="actor-close" onclick="closeActorImage()" aria-label="Close">×</button><h3 id="actorModalTitle">Career</h3><p id="actorModalSubtitle">Career visual</p></div>
+    <div class="actor-image-wrap"><img id="actorCareerImage" alt="Career visual"></div>
+    <div class="actor-modal-foot" id="actorModalFoot">Explore this career and the skills it uses.</div>
+  </div>
+</div>
+<footer>CBC Career Pathway Navigator • Career guidance tool • 2026</footer>
+
+<script>
+const interests=[
+["Computers & technology","tech"],["Programming / coding","programming"],["Robotics / automation","robotics"],["Artificial intelligence","ai"],
+["Mathematics / numbers","math"],["Science & experiments","science"],["Biology / health","biology"],["Machines / repairing","machines"],
+["Building / construction","building"],["Electronics / electricity","electronics"],["Engineering / innovation","engineering"],["Drawing / painting","visual"],
+["Graphic design","design"],["Fashion / textiles","fashion"],["Music / singing","music"],["Acting / drama","acting"],["Dance / choreography","dance"],
+["Film / video","film"],["Photography","photo"],["Writing / storytelling","writing"],["Reading / research","research"],["Languages","languages"],
+["Teaching","teaching"],["Helping people","helping"],["Counselling / listening","counselling"],["Leadership","leadership"],["Business / entrepreneurship","business"],
+["Law / justice","law"],["Debate / public speaking","debate"],["Agriculture / farming","agriculture"],["Animals / veterinary work","animals"],
+["Environment / nature","environment"],["Tourism / travel","tourism"],["Cooking / food","food"],["Community service","community"],["Sports / fitness","sports"],
+["Football","football"],["Athletics","athletics"],["Coaching","coaching"],["Games / e-sports","games"],["Media / social media","media"]
+];
+const activities=[
+["Build or repair things","machines"],["Use computers","tech"],["Code a website/app","programming"],["Design a robot or automated system","robotics"],
+["Explore AI and new technology","ai"],["Analyse numbers/data","math"],["Conduct experiments","science"],["Research health/biology topics","biology"],
+["Design buildings or structures","building"],["Work with electrical/electronic systems","electronics"],["Solve puzzles/problems","math"],
+["Write stories/articles","writing"],["Read and research","research"],["Draw, paint or illustrate","visual"],["Create graphics/posters","design"],
+["Design clothes/textiles","fashion"],["Perform on stage","acting"],["Sing or play instruments","music"],["Dance/choreograph","dance"],
+["Take photos/videos","photo"],["Edit videos/content","media"],["Play competitive sports","sports"],["Play football","football"],
+["Train or coach others","coaching"],["Run a business","business"],["Sell or market products","business"],["Debate or argue ideas","law"],
+["Speak to an audience","debate"],["Teach or explain","teaching"],["Counsel/listen to people","counselling"],["Volunteer in the community","community"],
+["Work outdoors","environment"],["Farm or grow crops","agriculture"],["Work with animals","animals"],["Plan trips/events","tourism"],
+["Cook or create food","food"],["Lead a team/project","leadership"],["Organise activities","organisation"],["Create online content","media"],
+["Explore games/e-sports","games"]
+];
+const NON_MATCHING_SUBJECTS = new Set(["mathematics","core mathematics","advanced mathematics","essential mathematics","english","kiswahili","fasihi ya kiswahili"]);
+const subjects=[
+["Essential Mathematics","essentialMath"],["Biology","biology"],["Chemistry","chemistry"],["Physics","physics"],["General Science","generalScience"],
+["Agriculture","agriculture"],["Computer Studies","computerStudies"],["Geography","geography"],["History & Citizenship","history"],["Business Studies","businessStudies"],
+["English","english"],["Literature in English","literature"],["Fasihi ya Kiswahili","fasihi"],["Indigenous Language","indigenous"],["Arabic","arabic"],["French","french"],["German","german"],["Mandarine Chinese","mandarin"],["Kenya Sign Language","signLanguage"],
+["Christian Religious Education","cre"],["Islamic Religious Education","ire"],["Hindu Religious Education","hre"],
+["Fine Arts","fineArts"],["Music & Dance","musicDance"],["Theatre & Film","theatreFilm"],["Sports & Recreation","sportsRecreation"],
+["Building & Construction","buildingConstruction"],["Electricity","electricity"],["Metal Work","metalWork"],["Wood Work","woodWork"],["Power Mechanics","powerMechanics"],["Aviation","aviation"],["Marine & Fisheries","marineFisheries"],["Media Technology","mediaTechnology"],["Home Science","homeScience"]
+];
+const strengths=[
+["Problem solving","problem"],["Logical thinking","logic"],["Creativity","creative"],["Communication","communication"],["Helping and empathy","empathy"],["Leadership","lead"],["Teamwork","team"],["Practical / hands-on skills","practical"],["Physical ability","physical"],["Writing","writing"],["Performing","perform"],["Numerical ability","numbers"]
+];
+
+const careerDB=[
+["Software Developer","STEM","Technical & Engineering",["tech","programming","math","logic","problem"],["Mathematics","ICT / Computing","Integrated Science","English"],["Computer Science","Software Engineering","Information Technology"]],
+["Data Scientist","STEM","Applied Sciences",["tech","programming","math","science","numbers","logic"],["Mathematics","ICT / Computing","Integrated Science","English"],["Data Science","Statistics","Computer Science"]],
+["Electrical Engineer","STEM","Technical & Engineering",["electronics","machines","science","math","practical","problem"],["Mathematics","Integrated Science","ICT / Computing","Creative Arts"],["Electrical Engineering","Electronics","Mechatronics"]],
+["Mechanical Engineer","STEM","Technical & Engineering",["machines","building","science","math","practical","problem"],["Mathematics","Integrated Science","Creative Arts","ICT / Computing"],["Mechanical Engineering","Mechatronics","Automotive Engineering"]],
+["Civil Engineer","STEM","Technical & Engineering",["building","math","science","design","practical"],["Mathematics","Integrated Science","Creative Arts","ICT / Computing"],["Civil Engineering","Construction Technology","Architecture"]],
+["Architect","STEM","Technical & Engineering",["building","visual","design","math","creative"],["Mathematics","Creative Arts","Integrated Science","ICT / Computing"],["Architecture","Architectural Technology","Interior Design"]],
+["Medical Doctor","STEM","Pure Sciences",["science","helping","empathy","problem","numbers"],["Integrated Science","Mathematics","English","Social Studies"],["Medicine","Biomedical Sciences","Health Sciences"]],
+["Laboratory Scientist","STEM","Pure Sciences",["science","math","problem","logic"],["Integrated Science","Mathematics","ICT / Computing","English"],["Medical Laboratory Science","Biological Sciences","Chemistry"]],
+["Environmental Scientist","STEM","Applied Sciences",["environment","science","agriculture","animals","problem"],["Integrated Science","Agriculture","Mathematics","ICT / Computing"],["Environmental Science","Natural Resource Management","Conservation"]],
+["Agricultural Scientist","STEM","Applied Sciences",["agriculture","animals","science","environment","problem"],["Agriculture","Integrated Science","Mathematics","ICT / Computing"],["Agricultural Science","Agribusiness","Animal Science"]],
+["Lawyer","Social Sciences","Humanities & Business Studies",["law","communication","writing","leadership","helping"],["English","Social Studies","Kiswahili","Business Studies"],["Law","Criminology","Legal Studies"]],
+["Teacher","Social Sciences","Humanities & Business Studies",["teaching","helping","communication","languages","lead","team"],["English","Kiswahili","Social Studies","Relevant subject"],["Education","Early Childhood Education","Teacher Education"]],
+["Journalist","Social Sciences","Languages & Literature",["writing","communication","languages","photo","film"],["English","Kiswahili","Social Studies","ICT / Computing"],["Journalism","Mass Communication","Digital Media"]],
+["Entrepreneur","Social Sciences","Humanities & Business Studies",["business","leadership","communication","numbers","tech"],["Business Studies","Mathematics","English","ICT / Computing"],["Business Administration","Entrepreneurship","Marketing"]],
+["Accountant","Social Sciences","Humanities & Business Studies",["business","numbers","math","logic","tech"],["Mathematics","Business Studies","ICT / Computing","English"],["Accounting","Finance","Commerce"]],
+["Psychologist / Counsellor","Social Sciences","Humanities & Business Studies",["helping","empathy","communication","teaching","writing"],["English","Social Studies","Kiswahili","Mathematics"],["Psychology","Counselling","Community Development"]],
+["Human Resource Manager","Social Sciences","Humanities & Business Studies",["people","leadership","business","communication","team"],["Business Studies","English","Social Studies","ICT / Computing"],["Human Resource Management","Business Administration","Organisational Psychology"]],
+["Public Relations Officer","Social Sciences","Languages & Literature",["communication","writing","leadership","business","media"],["English","Kiswahili","Social Studies","ICT / Computing"],["Public Relations","Communication","Marketing"]],
+["Graphic Designer","Arts & Sports Science","Arts",["visual","design","tech","creative","photo"],["Creative Arts","ICT / Computing","English","Business Studies"],["Graphic Design","Visual Communication","Digital Media"]],
+["Musician / Music Producer","Arts & Sports Science","Arts",["music","creative","tech","perform"],["Music","Creative Arts","English","ICT / Computing"],["Music","Music Production","Audio Engineering"]],
+["Actor / Theatre Artist","Arts & Sports Science","Arts",["acting","perform","communication","creative","writing"],["Performing Arts","English","Kiswahili","ICT / Computing"],["Theatre Arts","Film & Television","Performing Arts"]],
+["Dancer / Choreographer","Arts & Sports Science","Arts",["dance","perform","physical","music","creative"],["Performing Arts","Music","Physical Education / Sports","Creative Arts"],["Dance","Choreography","Performing Arts"]],
+["Photographer / Videographer","Arts & Sports Science","Arts",["photo","film","visual","tech","creative"],["Creative Arts","ICT / Computing","English","Business Studies"],["Photography","Film Production","Digital Media"]],
+["Animator","Arts & Sports Science","Arts",["visual","design","tech","programming","film","creative"],["Creative Arts","ICT / Computing","English","Mathematics"],["Animation","Game Design","Digital Media"]],
+["Fashion Designer","Arts & Sports Science","Arts",["visual","design","creative","business","practical"],["Creative Arts","Business Studies","Mathematics","ICT / Computing"],["Fashion Design","Textile Design","Fashion Technology"]],
+["Professional Athlete","Arts & Sports Science","Sports",["sports","football","athletics","physical","team","compete"],["Physical Education / Sports","Integrated Science","English","Social Studies"],["Sports Science","Sports Performance","Physical Education"]],
+["Sports Coach","Arts & Sports Science","Sports",["sports","coaching","lead","team","physical"],["Physical Education / Sports","Integrated Science","English","Social Studies"],["Sports Coaching","Sports Management","Physical Education"]],
+["Fitness Trainer","Arts & Sports Science","Sports",["fitness","sports","physical","science","helping"],["Physical Education / Sports","Integrated Science","English","Social Studies"],["Exercise Science","Fitness Training","Sports Science"]],
+["Sports Journalist","Arts & Sports Science","Sports",["sports","writing","communication","photo","film"],["English","Kiswahili","Physical Education / Sports","ICT / Computing"],["Sports Journalism","Mass Communication","Digital Media"]],
+["Sports Manager","Arts & Sports Science","Sports",["sports","business","lead","team","communication"],["Business Studies","Physical Education / Sports","English","ICT / Computing"],["Sports Management","Business Administration","Event Management"]]
+,
+["Robotics Engineer","STEM","Technical & Engineering",["robotics","programming","electronics","machines","math","science","technology","practical"],["Mathematics","Integrated Science","ICT / Computing","Creative Arts"],["Robotics Engineering","Mechatronics","Automation"]],
+["Cybersecurity Specialist","STEM","Careers & Technology Studies",["computer","programming","technology","logic","problem","security"],["Mathematics","ICT / Computing","Integrated Science","English"],["Cybersecurity","Information Technology","Computer Science"]],
+["Network Engineer","STEM","Careers & Technology Studies",["computer","technology","electronics","problem","practical"],["Mathematics","ICT / Computing","Integrated Science"],["Networking","Information Technology","Telecommunications"]],
+["Web Developer","STEM","Careers & Technology Studies",["computer","programming","coding","design","creative","technology"],["ICT / Computing","Mathematics","English","Creative Arts"],["Web Development","Software Engineering","Information Technology"]],
+["Biomedical Scientist","STEM","Pure Sciences",["science","biology","health","research","problem","math"],["Integrated Science","Mathematics","English","ICT / Computing"],["Biomedical Science","Biotechnology","Biological Sciences"]],
+["Pharmacist","STEM","Pure Sciences",["science","health","medicine","math","helping","problem"],["Integrated Science","Mathematics","English"],["Pharmacy","Pharmaceutical Sciences","Health Sciences"]],
+["Nurse","STEM","Pure Sciences",["science","helping","people","health","empathy","team"],["Integrated Science","English","Mathematics","Social Studies"],["Nursing","Community Health","Health Sciences"]],
+["Veterinary Doctor","STEM","Applied Sciences",["animals","science","helping","agriculture","biology","health"],["Integrated Science","Agriculture","Mathematics","English"],["Veterinary Medicine","Animal Health","Animal Science"]],
+["Quantity Surveyor","STEM","Technical & Engineering",["building","math","construction","business","design","numbers"],["Mathematics","Creative Arts","Business Studies","Integrated Science"],["Quantity Surveying","Construction Management","Building Economics"]],
+["Automotive Engineer","STEM","Technical & Engineering",["cars","machines","repair","engineering","math","science","practical"],["Mathematics","Integrated Science","Pre-Technical / Technology","ICT / Computing"],["Automotive Engineering","Mechanical Engineering","Mechatronics"]],
+["Aviation Technician","STEM","Technical & Engineering",["aviation","machines","repair","technology","science","math","practical"],["Mathematics","Integrated Science","ICT / Computing"],["Aviation Technology","Aircraft Maintenance","Aeronautical Engineering"]],
+["Geologist","STEM","Applied Sciences",["science","environment","nature","research","field","math"],["Integrated Science","Mathematics","Geography / Social Studies"],["Geology","Earth Sciences","Environmental Science"]],
+["Economist","Social Sciences","Humanities & Business Studies",["business","math","numbers","research","communication","problem"],["Mathematics","Business Studies","Social Studies","English"],["Economics","Finance","Statistics"]],
+["Marketing Specialist","Social Sciences","Humanities & Business Studies",["business","communication","creative","design","leadership","technology"],["Business Studies","English","ICT / Computing","Creative Arts"],["Marketing","Digital Marketing","Business Administration"]],
+["Social Worker","Social Sciences","Humanities & Business Studies",["helping","people","empathy","community","communication","teaching"],["Social Studies","English","Kiswahili","Religious Education"],["Social Work","Community Development","Counselling"]],
+["Diplomat / International Relations Specialist","Social Sciences","Humanities & Business Studies",["languages","communication","leadership","people","law","writing"],["English","Kiswahili","Social Studies","Foreign Languages"],["International Relations","Diplomacy","Political Science"]],
+["Translator / Interpreter","Social Sciences","Languages & Literature",["languages","communication","writing","speaking","people"],["English","Kiswahili","Foreign Languages","Literature"],["Translation","Interpretation","Linguistics"]],
+["Editor","Social Sciences","Languages & Literature",["writing","languages","communication","reading","creative"],["English","Kiswahili","Literature","ICT / Computing"],["Publishing","Editing","Communication"]],
+["Content Creator","Arts & Sports Science","Arts",["film","photo","writing","communication","creative","tech","design"],["Creative Arts","English","ICT / Computing","Performing Arts"],["Digital Media","Film Production","Communication"]],
+["Interior Designer","Arts & Sports Science","Arts",["design","drawing","visual","creative","building","art"],["Creative Arts","Mathematics","ICT / Computing","Business Studies"],["Interior Design","Design","Architecture"]],
+["Illustrator","Arts & Sports Science","Arts",["drawing","visual","art","design","creative","writing"],["Creative Arts","English","ICT / Computing"],["Illustration","Graphic Design","Animation"]],
+["Sound Engineer","Arts & Sports Science","Arts",["music","sound","technology","electronics","creative","film"],["Music","ICT / Computing","Integrated Science"],["Audio Engineering","Music Production","Sound Technology"]],
+["Radio Presenter","Arts & Sports Science","Arts",["speaking","communication","music","writing","media","languages"],["English","Kiswahili","Performing Arts","ICT / Computing"],["Broadcasting","Mass Communication","Radio Production"]],
+["Film Director","Arts & Sports Science","Arts",["film","acting","camera","creative","leadership","writing"],["Performing Arts","English","Creative Arts","ICT / Computing"],["Film & Television","Directing","Media Production"]],
+["Sports Physiotherapist","Arts & Sports Science","Sports",["sports","fitness","science","health","helping","physical"],["Physical Education / Sports","Integrated Science","English"],["Physiotherapy","Sports Science","Exercise Science"]],
+["Sports Nutritionist","Arts & Sports Science","Sports",["sports","fitness","food","science","health","helping"],["Physical Education / Sports","Integrated Science","Agriculture"],["Sports Nutrition","Nutrition","Sports Science"]],
+["Referee / Sports Official","Arts & Sports Science","Sports",["sports","football","competition","leadership","communication","rules"],["Physical Education / Sports","Social Studies","English"],["Sports Management","Sports Officiating","Physical Education"]],
+["Event Manager","Social Sciences","Humanities & Business Studies",["business","leadership","events","communication","organisation","creative"],["Business Studies","English","ICT / Computing","Creative Arts"],["Event Management","Hospitality","Business Administration"]],
+["Chef / Food Entrepreneur","Social Sciences","Humanities & Business Studies",["cooking","food","business","creative","practical","helping"],["Business Studies","Agriculture","English","Creative Arts"],["Culinary Arts","Hospitality","Food Production"]],
+["Tourism Manager","Social Sciences","Humanities & Business Studies",["travel","people","business","communication","environment","leadership"],["English","Social Studies","Business Studies","Foreign Languages"],["Tourism Management","Hospitality","Travel Operations"]]
+]
+
+let selected={interest:[],activity:[],subject:[],rating:{}}, results=[], bestPath="";
+
+function renderChips(id,data,key){
+ const box=document.getElementById(id); box.innerHTML="";
+ data.forEach(([label,val])=>{const b=document.createElement("button");b.type="button";b.className="chip";b.textContent=label;b.dataset.val=val;b.onclick=()=>{b.classList.toggle("selected");selected[key]=[...box.querySelectorAll(".selected")].map(x=>x.dataset.val);updateProgress()};box.appendChild(b)});
+}
+renderChips("interestChips",interests,"interest");renderChips("activityChips",activities,"activity");renderChips("subjectChips",subjects,"subject");
+document.querySelectorAll("#assessment input,#assessment select,#assessment textarea").forEach(el=>{
+  el.addEventListener("input",updateProgress);
+  el.addEventListener("change",updateProgress);
+});
+
+(function(){
+ const box=document.getElementById("strengths");
+ strengths.forEach(([label,key])=>{const row=document.createElement("div");row.className="rating-row";row.innerHTML="<span>"+label+"</span><div class='rating-btns'></div>";const r=row.querySelector(".rating-btns");for(let n=1;n<=5;n++){const b=document.createElement("button");b.className="rating-btn";b.textContent=n;b.onclick=()=>{r.querySelectorAll(".rating-btn").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");selected.rating[key]=n;updateProgress()};r.appendChild(b)}box.appendChild(row)})
+})();
+
+
+const keywordAliases={
+  computer:["computer","computers","coding","code","programming","technology","software","digital","ict"],
+  tech:["computer","computers","coding","code","programming","technology","software","digital","ict"],
+  programming:["programming","coding","code","developer","software"],
+  math:["math","mathematics","numbers","numerical","calculation"],
+  science:["science","scientific","experiment","experiments","laboratory","research"],
+  machines:["machine","machines","repair","repairing","mechanic","mechanical","workshop"],
+  building:["building","construction","construct","architecture","architect","designing"],
+  electronics:["electronics","electronic","circuits","electrical","electricity"],
+  visual:["drawing","draw","painting","art","visual","illustration"],
+  design:["design","designer","creative","graphics","graphic"],
+  helping:["help","helping","people","community","care","service"],
+  leadership:["lead","leader","leadership","manage","management","organize","organisation"],
+  law:["law","legal","justice","court","debate","rights"],
+  agriculture:["agriculture","farming","farm","crops","livestock"],
+  animals:["animal","animals","veterinary","vet"],
+  environment:["environment","nature","conservation","climate","outdoors","field"],
+  sports:["sport","sports","football","athletics","fitness","competition","competitive"],
+  coaching:["coach","coaching","training","trainer"],
+  food:["food","cooking","chef","culinary","hospitality"],
+  robotics:["robot","robotics","automation"], ai:["ai","artificial","intelligence"], biology:["biology","health","medical","medicine"],
+  engineering:["engineering","innovation","invent"], fashion:["fashion","textile","clothes"], counselling:["counselling","counseling","listening","psychology"],
+  debate:["debate","public","speaking","argument"], tourism:["tourism","travel","hospitality"], community:["community","volunteer","service"],
+  games:["games","gaming","esports"], media:["media","social","content","video","broadcast"], organisation:["organise","organize","organisation","organization"]
+};
+
+function tokens(){
+  const raw=(document.getElementById("freeText").value||"").toLowerCase();
+  const words=raw.replace(/[^a-z0-9\s]/g," ").split(/\s+/).filter(Boolean);
+  const out=new Set([...words,...selected.interest,...selected.activity,...selected.subject]);
+
+  Object.entries(keywordAliases).forEach(([tag,wordsForTag])=>{
+    if(wordsForTag.some(w=>words.includes(w))) out.add(tag);
+  });
+  return out;
+}
+
+function selectedSubjectLabels(){
+  return (selected.subject||[]).map(subjectLabelByKey).filter(Boolean);
+}
+
+function generate(){
+ const toks=tokens();
+ if(!toks.size){alert("Please describe or select at least one interest.");return}
+ const env=document.getElementById("environment").value, mot=document.getElementById("motivation").value;
+ const pathScore={STEM:0,"Social Sciences":0,"Arts & Sports Science":0};
+ results=careerDB.map(c=>{
+   let score=0,matched=[];
+   c[3].forEach(k=>{if(toks.has(k)||[...toks].some(t=>t.includes(k)||k.includes(t))){score+=12;matched.push(k)}});
+   Object.entries(selected.rating).forEach(([k,v])=>{if(c[3].includes(k))score+=Number(v)*2});
+   if(env==="technology"&&c[1]==="STEM")score+=8;
+   if(env==="office"&&c[1]==="Social Sciences")score+=8;
+   if(env==="community"&&c[1]==="Social Sciences")score+=8;
+   if(env==="studio"&&c[1]==="Arts & Sports Science")score+=8;
+   if(env==="sports"&&c[2]==="Sports")score+=10;
+   if(env==="workshop"&&c[2]==="Technical & Engineering")score+=8;
+   if(env==="field"&&(c[1]==="STEM"||c[2]==="Sports"))score+=4;
+   if(mot==="solve"&&c[1]==="STEM")score+=7;
+   if(mot==="help"&&c[3].some(x=>["helping","empathy","teaching"].includes(x)))score+=7;
+   if(mot==="create"&&c[1]==="Arts & Sports Science")score+=7;
+   if(mot==="lead"&&c[3].includes("lead"))score+=7;
+   if(mot==="compete"&&c[2]==="Sports")score+=9;
+   if(mot==="discover"&&c[1]==="STEM")score+=6;
+   if(mot==="business"&&c[3].includes("business"))score+=8;
+
+   // Extra weighted assessment dimensions
+   const ratingMap={
+     problem:["problem","logic","numbers"], creative:["creative","visual","design"],
+     communication:["communication","writing"], empathy:["empathy","helping"],
+     lead:["leadership","lead"], team:["team"], practical:["practical","machines"],
+     physical:["physical","sports"], writing:["writing"], perform:["perform","acting","music"]
+   };
+   Object.entries(selected.rating).forEach(([rk,rv])=>{
+     if((ratingMap[rk]||[]).some(k=>c[3].includes(k))) score += Number(rv)*3;
+   });
+
+   const workPreference=document.getElementById("workPreference").value;
+    const impact=document.getElementById("impact").value;
+    const problemStyle=document.getElementById("problemStyle").value;
+    const variety=document.getElementById("variety").value;
+
+    if(env==="hospital"&&c[3].some(x=>["science","helping","empathy","health"].includes(x)))score+=10;
+    if(env==="school"&&c[3].some(x=>["teaching","helping","communication"].includes(x)))score+=9;
+    if(env==="media"&&c[3].some(x=>["media","film","photo","writing","communication"].includes(x)))score+=9;
+    if(env==="farm"&&c[3].some(x=>["agriculture","animals","environment"].includes(x)))score+=10;
+    if(env==="travel"&&c[3].some(x=>["tourism","communication","environment","business"].includes(x)))score+=8;
+    if(env==="court"&&c[3].some(x=>["law","communication","writing"].includes(x)))score+=10;
+    if(mot==="communicate"&&c[3].some(x=>["communication","writing","languages","media"].includes(x)))score+=7;
+    if(mot==="protect"&&c[3].some(x=>["environment","helping","law","animals"].includes(x)))score+=7;
+    if(mot==="organise"&&c[3].some(x=>["leadership","business","organisation"].includes(x)))score+=7;
+    if(mot==="innovate"&&c[1]==="STEM")score+=8;
+
+    if(workPreference==="independent"&&c[3].some(x=>["programming","research","writing","creative","problem"].includes(x)))score+=4;
+    if(workPreference==="team"&&c[3].some(x=>["team","communication","helping","leadership"].includes(x)))score+=4;
+    if(workPreference==="handsOn"&&c[3].some(x=>["practical","machines","building","electronics"].includes(x)))score+=6;
+    if(workPreference==="research"&&c[3].some(x=>["science","research","logic","problem"].includes(x)))score+=6;
+    if(workPreference==="people"&&c[3].some(x=>["helping","communication","teaching"].includes(x)))score+=6;
+    if(workPreference==="creative"&&c[3].some(x=>["creative","visual","design","music","acting"].includes(x)))score+=6;
+    if(workPreference==="leadership"&&c[3].some(x=>["lead","leadership","business"].includes(x)))score+=6;
+    if(workPreference==="active"&&c[3].some(x=>["physical","sports","practical"].includes(x)))score+=6;
+
+    if(impact==="innovation"&&c[1]==="STEM")score+=6;
+    if(impact==="health"&&c[3].some(x=>["science","helping","empathy","health"].includes(x)))score+=7;
+    if(impact==="education"&&c[3].some(x=>["teaching","communication","helping"].includes(x)))score+=7;
+    if(impact==="community"&&c[3].some(x=>["community","helping"].includes(x)))score+=7;
+    if(impact==="business"&&c[3].includes("business"))score+=7;
+    if(impact==="environment"&&c[3].some(x=>["environment","agriculture","animals"].includes(x)))score+=7;
+    if(impact==="creative"&&c[1]==="Arts & Sports Science")score+=6;
+    if(impact==="performance"&&c[2]==="Sports")score+=7;
+
+    if(problemStyle==="analytical"&&c[3].some(x=>["logic","numbers","math","problem","research"].includes(x)))score+=5;
+    if(problemStyle==="practical"&&c[3].some(x=>["practical","machines","building","electronics"].includes(x)))score+=5;
+    if(problemStyle==="people"&&c[3].some(x=>["helping","empathy","communication"].includes(x)))score+=5;
+    if(problemStyle==="creative"&&c[3].some(x=>["creative","visual","design"].includes(x)))score+=5;
+    if(problemStyle==="strategic"&&c[3].some(x=>["lead","leadership","business","law"].includes(x)))score+=5;
+    if(problemStyle==="research"&&c[3].some(x=>["science","research","problem","logic"].includes(x)))score+=5;
+    if(variety==="varied"&&c[3].some(x=>["media","tourism","business","communication"].includes(x)))score+=3;
+    if(variety==="adventure"&&c[3].some(x=>["sports","tourism","environment"].includes(x)))score+=4;
+
+    // Favourite subject affinity
+   selected.subject.forEach(s=>{
+     if(c[4].some(sub=>sub.toLowerCase().includes(s))) score+=6;
+   });
+
+   pathScore[c[1]]+=score;
+   return {data:c,score,matched};
+ }).sort((a,b)=>b.score-a.score);
+ const paths=Object.entries(pathScore).sort((a,b)=>b[1]-a[1]);
+ bestPath=paths[0][0];
+ renderPathways(paths); renderReport(paths); renderCareers(); renderSubjects(); renderCourses(); renderCombinations(); renderAlternatives(paths); renderAdvice(); renderPrintLists();
+ document.getElementById("results").style.display="block";
+ document.getElementById("results").scrollIntoView({behavior:"smooth"});
+}
+function renderPathways(paths){
+ const max=Math.max(...paths.map(x=>x[1]),1),box=document.getElementById("pathwayCards");box.innerHTML="";
+ paths.forEach(([p,s],i)=>{let pct=Math.max(8,Math.round(s/max*100));box.innerHTML+=`<div class="pathway ${i===0?"best":""}"><h3>${p}</h3><div class="pct">${pct}%</div><div class="bar"><i style="width:${pct}%"></i></div><p class="muted">${i===0?"Strongest overall match.":"Alternative pathway worth exploring."}</p></div>`})
+}
+function renderReport(){
+ const name=document.getElementById("name").value||"Learner",grade=document.getElementById("grade").value,school=document.getElementById("school").value;
+ document.getElementById("learnerSummary").textContent=[name,grade,school].filter(Boolean).join(" • ");
+ document.getElementById("bestPathway").textContent=bestPath;
+ const top=results.filter(x=>x.data[1]===bestPath).slice(0,10);
+ const tracks={};top.forEach(x=>tracks[x.data[2]]=(tracks[x.data[2]]||0)+1);
+ const track=Object.entries(tracks).sort((a,b)=>b[1]-a[1])[0]?.[0]||"Explore related tracks";
+ document.getElementById("bestTrack").textContent=track;
+ const desc={STEM:"Your answers show a strong interest in problem solving, science, mathematics, technology, practical systems or innovation.","Social Sciences":"Your answers show strong interest in people, communication, leadership, business, languages, society or helping others.","Arts & Sports Science":"Your answers show strong creative, performing, visual-art, physical-performance or sports interests."};
+ document.getElementById("reason").textContent=desc[bestPath]+" Explore several careers before making a final subject or career decision.";
+}
+function renderPrintLists(){
+ const name=document.getElementById("name").value||"Learner",grade=document.getElementById("grade").value||"",school=document.getElementById("school").value||"";
+ const sub=[name,grade,school,bestPath].filter(Boolean).join(" • ");
+ document.getElementById("printCareerSubtitle").textContent=sub;
+ document.getElementById("printCombinationSubtitle").textContent=sub;
+ document.getElementById("printCareersList").innerHTML=results.filter(x=>x.data[1]===bestPath).slice(0,15).map((x,i)=>{const c=x.data,m=Math.min(99,Math.max(20,Math.round(x.score/Math.max(results[0].score,1)*100)));return `<div class="print-item"><h4>${i+1}. ${c[0]}</h4><p><b>Pathway:</b> ${c[1]}</p><p><b>Track:</b> ${c[2]}</p><p><b>Match:</b> ${m}%</p></div>`}).join("");
+ const relevant=rankedOfficialCombinations().slice(0,20).map(x=>x.data);
+ document.getElementById("printCombinationsList").innerHTML=relevant.map((x,i)=>`<div class="print-combo"><strong>${i+1}. ${x[1]}</strong><span>${x[2]}</span><div class="code">Pathway: ${x[0]} • Code: ${x[3]}</div></div>`).join("");
+}
+function learnerShareHeader(){
+ const name=document.getElementById("name").value||"Learner";
+ const grade=document.getElementById("grade").value||"";
+ const school=document.getElementById("school").value||"";
+ return ["🎓 CBC Career Pathway Navigator",`Learner: ${name}`,grade&&`Grade: ${grade}`,school&&`School: ${school}`,`Recommended pathway: ${bestPath||"Not generated"}`].filter(Boolean).join("\n");
+}
+function openWhatsApp(text){
+ const url="https://wa.me/?text="+encodeURIComponent(text);
+ window.open(url,"_blank","noopener,noreferrer");
+}
+function shareCareersWhatsApp(){
+ const careers=results.filter(x=>x.data[1]===bestPath).slice(0,10);
+ if(!careers.length){alert("Please generate the career report first.");return;}
+ const lines=careers.map((x,i)=>{const c=x.data;const m=Math.min(99,Math.max(20,Math.round(x.score/Math.max(results[0].score,1)*100)));return `${i+1}. ${c[0]} — ${c[1]} / ${c[2]} — Match ${m}%`;});
+ openWhatsApp(learnerShareHeader()+"\n\n💼 Recommended Careers\n"+lines.join("\n")+"\n\nGenerated as career guidance; confirm current requirements before making a final decision.");
+}
+function shareCombinationsWhatsApp(){
+ const combos=rankedOfficialCombinations().filter(x=>x.data[0].toUpperCase()===bestPath.toUpperCase()).slice(0,10);
+ const list=(combos.length?combos:rankedOfficialCombinations()).slice(0,10);
+ if(!list.length){alert("Please generate the career report first.");return;}
+ const lines=list.map((x,i)=>{const c=x.data;return `${i+1}. ${c[2]} (Code: ${c[3]})`;});
+ openWhatsApp(learnerShareHeader()+"\n\n🧩 Recommended Grade 10 Subject Combinations\n"+lines.join("\n")+"\n\nPlease confirm availability and current requirements in the official Grade 10 Selection System.");
+}
+function printRecommendedCareers(){renderPrintLists();document.body.classList.remove("print-combinations");document.body.classList.add("print-careers");window.print()}
+function printSubjectCombinations(){renderPrintLists();document.body.classList.remove("print-careers");document.body.classList.add("print-combinations");window.print()}
+window.onafterprint=()=>{document.body.classList.remove("print-careers","print-combinations");document.getElementById("printCareersCard").classList.add("hidden");document.getElementById("printCombinationsCard").classList.add("hidden")};
+
+function careerIcon(name){
+ const n=name.toLowerCase();
+ if(/actor|theatre|dancer|choreographer|performer/.test(n)) return "🎭";
+ if(/doctor|nurse|pharmac|biomedical|physio|nutrition|psychologist|counsellor/.test(n)) return "🩺";
+ if(/engineer|robot|automotive|aviation|network|web developer|cybersecurity/.test(n)) return "⚙️";
+ if(/teacher|education/.test(n)) return "📚";
+ if(/lawyer|diplomat|legal|referee/.test(n)) return "⚖️";
+ if(/accountant|economist|entrepreneur|business|marketing|manager/.test(n)) return "💼";
+ if(/journalist|writer|editor|content|presenter|translator/.test(n)) return "📰";
+ if(/graphic|designer|illustrator|animator|fashion|interior/.test(n)) return "🎨";
+ if(/musician|music|sound|radio|film/.test(n)) return "🎬";
+ if(/athlete|coach|fitness|sports/.test(n)) return "🏅";
+ if(/veterinary|animal/.test(n)) return "🐾";
+ if(/geologist|environment|agric|farmer|tourism/.test(n)) return "🌍";
+ if(/chef|food/.test(n)) return "👨‍🍳";
+ return "🚀";
+}
+function careerPhotoQuery(name){
+ const n=String(name).toLowerCase().trim();
+ // Use highly specific photographic keywords so the image service is much more
+ // likely to return the actual profession rather than a generic workplace.
+ if(/actor|theatre artist|theater artist|theatre|performer/.test(n)) return "actor,theatre,stage,performance";
+ if(/dancer|choreographer/.test(n)) return "professional,dancer,dance,stage";
+ if(/doctor|medical officer|surgeon|physician/.test(n)) return "doctor,physician,hospital,medical";
+ if(/nurse/.test(n)) return "nurse,hospital,healthcare";
+ if(/pharmac/.test(n)) return "pharmacist,pharmacy,healthcare";
+ if(/veterinary|veterinarian/.test(n)) return "veterinarian,veterinary,animal,clinic";
+ if(/engineer/.test(n)) return "engineer,engineering,construction,technical";
+ if(/architect/.test(n)) return "architect,architecture,blueprint,building";
+ if(/quantity surveyor/.test(n)) return "quantity,surveyor,construction,building";
+ if(/programmer|software developer|web developer|computer scientist/.test(n)) return "software,developer,programmer,computer";
+ if(/cybersecurity|cyber security/.test(n)) return "cybersecurity,computer,security,technology";
+ if(/robot|automation/.test(n)) return "robotics,robot,engineer,technology";
+ if(/pilot|aviation/.test(n)) return "pilot,cockpit,aviation,aircraft";
+ if(/teacher|lecturer|trainer|education/.test(n)) return "teacher,classroom,students,education";
+ if(/lawyer|advocate|legal|magistrate|judge/.test(n)) return "lawyer,court,legal,justice";
+ if(/diplomat/.test(n)) return "diplomat,international,government,meeting";
+ if(/accountant/.test(n)) return "accountant,accounting,finance,office";
+ if(/economist/.test(n)) return "economist,economics,finance,analysis";
+ if(/entrepreneur|business|manager|marketing|bank/.test(n)) return "entrepreneur,business,office,professional";
+ if(/journalist|reporter/.test(n)) return "journalist,reporter,news,media";
+ if(/presenter|broadcaster/.test(n)) return "tv,presenter,broadcasting,studio";
+ if(/writer|author|editor|translator/.test(n)) return "writer,author,writing,office";
+ if(/graphic|designer|illustrator/.test(n)) return "graphic,designer,design,creative";
+ if(/fashion/.test(n)) return "fashion,designer,studio,clothing";
+ if(/animator/.test(n)) return "animator,animation,computer,creative";
+ if(/musician|singer/.test(n)) return "musician,singer,recording,stage";
+ if(/sound engineer/.test(n)) return "sound,engineer,recording,studio";
+ if(/film|producer|camera|photograph/.test(n)) return "film,production,camera,studio";
+ if(/athlete|football|athletics|sports/.test(n)) return "athlete,sports,stadium,training";
+ if(/coach|fitness/.test(n)) return "sports,coach,training,fitness";
+ if(/agric|farmer/.test(n)) return "farmer,agriculture,farm,crops";
+ if(/environment|forestry|conservation|wildlife/.test(n)) return "environment,conservation,nature,field";
+ if(/tourism|travel/.test(n)) return "tourism,travel,guide,hotel";
+ if(/chef|culinary|baker|food/.test(n)) return "chef,cooking,kitchen,culinary";
+ if(/police|security/.test(n)) return "police,security,professional";
+ if(/firefighter|emergency/.test(n)) return "firefighter,emergency,rescue";
+ return "professional,career,workplace";
+}
+function careerPhotoUrl(name){
+ const seed=[...String(name)].reduce((a,c)=>a+c.charCodeAt(0),0)+String(name).length*17;
+ return "https://loremflickr.com/640/360/"+encodeURIComponent(careerPhotoQuery(name))+"?lock="+(seed%997);
+}
+function showCareerImage(name,pathway,area){
+ const modal=document.getElementById("actorModal");
+ const img=document.getElementById("actorCareerImage");
+ document.getElementById("actorModalTitle").textContent=careerIcon(name)+" "+name;
+ document.getElementById("actorModalSubtitle").textContent=pathway+" • "+area;
+ document.getElementById("actorModalFoot").textContent="Real career photograph • Explore the skills, subjects and courses recommended for this career.";
+ img.alt=name+" career photograph";
+ img.loading="eager";
+ img.decoding="async";
+ img.src=careerPhotoUrl(name);
+ img.onerror=function(){this.onerror=null;this.src="https://loremflickr.com/640/360/professional,workplace?lock=911";};
+ modal.classList.remove("hidden");document.body.style.overflow="hidden";
+}
+function closeActorImage(){document.getElementById("actorModal").classList.add("hidden");document.body.style.overflow=""}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeActorImage()});
+function renderCareers(){
+ const q=(document.getElementById("careerSearch").value||"").toLowerCase(),box=document.getElementById("careers");box.innerHTML="";
+ const visible=results.filter(x=>x.data[1]===bestPath&&x.data[0].toLowerCase().includes(q)).slice(0,15); visible.forEach(x=>{let c=x.data;let m=Math.min(99,Math.max(20,Math.round(x.score/Math.max(results[0].score,1)*100)));box.innerHTML+=`<div class="career"><h4>${c[0]}</h4><span class="badge">${c[1]}</span><span class="badge">${c[2]}</span><p><span class="match">Match ${m}%</span></p><p>Matched signals: ${x.matched.slice(0,5).join(", ")||"general pathway match"}</p><button type="button" class="actor-view-btn" onclick='showCareerImage(${JSON.stringify(c[0])},${JSON.stringify(c[1])},${JSON.stringify(c[2])})'>${careerIcon(c[0])} View</button></div>`})
+}
+function renderSubjects(){
+ const map={};results.filter(x=>x.data[1]===bestPath).slice(0,10).forEach(x=>x.data[4].forEach(s=>map[s]=(map[s]||0)+1));
+ const rows=Object.entries(map)
+    .filter(([s])=>!["advanced mathematics","core mathematics","mathematics"].includes(normalizeSubject(s)))
+    .sort((a,b)=>b[1]-a[1]).slice(0,8),tbody=document.getElementById("subjects");tbody.innerHTML="";
+ rows.forEach(([s])=>{let why=s==="Essential Mathematics"?"Builds numerical, analytical and problem-solving ability.":s==="Integrated Science"?"Builds scientific reasoning and understanding of systems.":s==="ICT / Computing"?"Develops digital and technology skills.":s==="Creative Arts"?"Develops visual creativity and design.":s==="Performing Arts"?"Develops performance, expression and presentation.":s==="Physical Education / Sports"?"Develops physical performance, teamwork and sports skills.":s==="English"?"Supports communication, reading, writing and professional expression.":s==="Kiswahili"?"Strengthens communication and language skills.":s==="Business Studies"?"Supports entrepreneurship, management and commercial skills.":s==="Social Studies"?"Builds understanding of society, citizenship and people.":s==="Agriculture"?"Builds agricultural and environmental knowledge.":"Supports the selected career direction.";tbody.innerHTML+=`<tr><td><b>${s}</b></td><td>${why}</td></tr>`})
+}
+function renderCourses(){
+ const set=new Set();results.filter(x=>x.data[1]===bestPath).slice(0,8).forEach(x=>x.data[5].forEach(c=>set.add(c)));document.getElementById("courses").innerHTML=[...set].slice(0,15).map(x=>`<span class="chip selected" style="cursor:default">${x}</span>`).join("")
+}
+function renderAlternatives(paths){
+ document.getElementById("alternatives").innerHTML=paths.slice(1).map(([p,s])=>`<p><b>${p}</b> — ${p==="STEM"?"Explore science, technology, mathematics and engineering-related careers.":p==="Social Sciences"?"Explore people, communication, business, humanities and community-related careers.":"Explore creative arts, performing arts and sports-related careers."}</p>`).join("")
+}
+function renderAdvice(){
+ const advice=[
+ "Try practical projects connected to your strongest interests.",
+ "Pay attention to subjects that repeatedly appear in your career report.",
+ "Join clubs, sports, creative activities, competitions or community projects related to your interests.",
+ "Interview or speak with people working in careers that interest you.",
+ "Do not choose a career only because it appears first; compare several options.",
+ "Check the current subject requirements and training requirements before making a final decision."
+ ];
+ document.getElementById("advice").innerHTML=advice.map(x=>`<li>${x}</li>`).join("")
+}
+
+const officialCombinations=[
+["ARTS & SPORTS SCIENCE","Arts","Fine Arts + Theatre & Film + Arabic","AS1001"],
+["ARTS & SPORTS SCIENCE","Arts","Fine Arts + Theatre & Film + Biology","AS1002"],
+["ARTS & SPORTS SCIENCE","Arts","Fine Arts + Theatre & Film + Business Studies","AS1003"],
+["ARTS & SPORTS SCIENCE","Arts","Fine Arts + Theatre & Film + Computer Studies","AS1004"],
+["ARTS & SPORTS SCIENCE","Arts","Fine Arts + Theatre & Film + CRE/IRE/HRE","AS1005"],
+["ARTS & SPORTS SCIENCE","Arts","Fine Arts + Theatre & Film + Fasihi ya Kiswahili","AS1006"],
+["ARTS & SPORTS SCIENCE","Arts","Fine Arts + Theatre & Film + French","AS1007"],
+["ARTS & SPORTS SCIENCE","Arts","Fine Arts + Theatre & Film + General Science","AS1008"],
+["ARTS & SPORTS SCIENCE","Arts","Fine Arts + Theatre & Film + Geography","AS1009"],
+["ARTS & SPORTS SCIENCE","Arts","Fine Arts + Theatre & Film + German","AS1010"],
+["ARTS & SPORTS SCIENCE","Arts","Fine Arts + Theatre & Film + History & Citizenship","AS1011"],
+["ARTS & SPORTS SCIENCE","Arts","Music & Dance + Fine Arts + Biology","AS1012"],
+["ARTS & SPORTS SCIENCE","Arts","Music & Dance + Fine Arts + Computer Studies","AS1013"],
+["ARTS & SPORTS SCIENCE","Arts","Music & Dance + Theatre & Film + Business Studies","AS1014"],
+["ARTS & SPORTS SCIENCE","Sports","Sports & Recreation + Biology + Business Studies","AS2001"],
+["ARTS & SPORTS SCIENCE","Sports","Sports & Recreation + Biology + Computer Studies","AS2002"],
+["ARTS & SPORTS SCIENCE","Sports","Sports & Recreation + Business Studies + General Science","AS2003"],
+["ARTS & SPORTS SCIENCE","Sports","Sports & Recreation + Computer Studies + General Science","AS2004"],
+["ARTS & SPORTS SCIENCE","Sports","Sports & Recreation + Geography + History & Citizenship","AS2005"],
+["ARTS & SPORTS SCIENCE","Sports","Sports & Recreation + Biology + Physics","AS2006"],
+["SOCIAL SCIENCES","Languages & Literature","Arabic + French + General Science","SS1014"],
+["SOCIAL SCIENCES","Languages & Literature","German + Indigenous Language + Literature in English","SS1065"],
+["SOCIAL SCIENCES","Languages & Literature","French + Geography + Literature in English","SS1042"],
+["SOCIAL SCIENCES","Languages & Literature","English + Literature in English + Fasihi ya Kiswahili","SS1001"],
+["SOCIAL SCIENCES","Languages & Literature","English + Literature in English + Computer Studies","SS1004"],
+["SOCIAL SCIENCES","Humanities & Business Studies","Geography + History & Citizenship + Literature in English","SS2004"],
+["SOCIAL SCIENCES","Humanities & Business Studies","Advanced Mathematics + Business Studies + Geography","SS2056"],
+["SOCIAL SCIENCES","Humanities & Business Studies","Business Studies + Geography + Computer Studies","SS2040"],
+["SOCIAL SCIENCES","Humanities & Business Studies","History & Citizenship + Business Studies + Geography","SS2030"],
+["SOCIAL SCIENCES","Humanities & Business Studies","History & Citizenship + Business Studies + Computer Studies","SS2035"],
+["STEM","Pure Sciences","Biology + Chemistry + Computer Studies","ST1001"],
+["STEM","Pure Sciences","Biology + Chemistry + Physics","ST1002"],
+["STEM","Pure Sciences","Advanced Mathematics + Biology + Chemistry","ST1003"],
+["STEM","Pure Sciences","Advanced Mathematics + Electricity + Physics","ST1035"],
+["STEM","Pure Sciences","Core Mathematics + Chemistry + Computer Studies","ST1040"],
+["STEM","Pure Sciences","Core Mathematics + Biology + Chemistry","ST1041"],
+["STEM","Applied Sciences","Core Mathematics + Agriculture + General Science","ST2001"],
+["STEM","Applied Sciences","Biology + Business Studies + Computer Studies","ST2097"],
+["STEM","Applied Sciences","Advanced Mathematics + Business Studies + Computer Studies","ST2077"],
+["STEM","Applied Sciences","Core Mathematics + Home Science + Physics","ST2010"],
+["STEM","Applied Sciences","Core Mathematics + Aviation + General Science","ST2015"],
+["STEM","Technical & Engineering","Core Mathematics + Building & Construction + General Science","ST3001"],
+["STEM","Technical & Engineering","Core Mathematics + Building & Construction + Chemistry","ST3002"],
+["STEM","Technical & Engineering","Core Mathematics + Aviation + General Science","ST3003"],
+["STEM","Technical & Engineering","Advanced Mathematics + General Science + Marine & Fisheries","ST3047"],
+["STEM","Technical & Engineering","Chemistry + Geography + Power Mechanics","ST3015"],
+["STEM","Technical & Engineering","Biology + Chemistry + Computer Studies","ST3050"]
+]
+const OFFICIAL_SOURCE_URL='https://selection.education.go.ke/';
+
+// Normalize subject names so learner choices can be matched to official combinations.
+function normalizeSubject(s){
+  return String(s||'').toLowerCase()
+    .replace(/&/g,' and ')
+    .replace(/[^a-z0-9]+/g,' ')
+    .replace(/\b(core|advanced)\s+mathematics\b/g,'mathematics')
+    .replace(/\bcomputer\s+studies\b/g,'computer studies')
+    .replace(/\btheatre\s+and\s+film\b/g,'theatre film')
+    .replace(/\bmusic\s+and\s+dance\b/g,'music dance')
+    .replace(/\barts\s+and\s+sports\s+science\b/g,'arts sports science')
+    .replace(/\s+/g,' ').trim();
+}
+
+
+// ---------- Recommended Grade 10 combination logic ----------
+const FORBIDDEN_COMBINATION_SUBJECTS=new Set(["core mathematics","advanced mathematics"]);
+
+function comboSubjects(c){
+  return String(c&&c[2]||"").split(/\s*\+\s*/).map(s=>s.trim()).filter(Boolean);
+}
+function subjectLabelByKey(key){
+  const hit=subjects.find(x=>x[1]===key);
+  return hit?hit[0]:String(key||"");
+}
+function normalizeSubject(s){
+  return String(s||"").toLowerCase().replace(/&/g," and ").replace(/[^a-z0-9]+/g," ").replace(/\s+/g," ").trim();
+}
+function isForbiddenCombinationSubject(subject){
+  const n=normalizeSubject(subject);
+  return FORBIDDEN_COMBINATION_SUBJECTS.has(n)||n.includes("core mathematics")||n.includes("advanced mathematics");
+}
+function pathwayMatchesSubject(pathway,subject){
+  const n=normalizeSubject(subject);
+  if(!n||isForbiddenCombinationSubject(n))return false;
+  const map={
+    "STEM":["biology","chemistry","physics","general science","agriculture","computer studies","geography","building and construction","electricity","metal work","wood work","power mechanics","aviation","marine and fisheries","media technology","home science"],
+    "SOCIAL SCIENCES":["business studies","geography","history and citizenship","literature in english","arabic","french","german","indigenous language","fasihi ya kiswahili","religious education"],
+    "ARTS & SPORTS SCIENCE":["fine arts","music and dance","theatre and film","sports and recreation"]
+  };
+  return (map[pathway]||[]).some(x=>n===normalizeSubject(x));
+}
+function isValidTwoPlusOneCombination(c){
+  const pathway=String(c[0]||"").toUpperCase(), subs=comboSubjects(c);
+  if(subs.length!==3||subs.some(isForbiddenCombinationSubject))return false;
+  const main=subs.filter(s=>pathwayMatchesSubject(pathway,s));
+  const complementary=subs.filter(s=>!pathwayMatchesSubject(pathway,s));
+  return main.length===2&&complementary.length===1;
+}
+function rankedOfficialCombinations(){
+  const preferred=(selected.subject||[]).map(subjectLabelByKey).filter(Boolean).filter(s=>!isForbiddenCombinationSubject(s));
+  // Keep the official combination list broad so learners see several valid
+  // recommendations instead of losing options because of an overly strict
+  // two-plus-one filter. Mathematics/Core/Advanced Mathematics remain excluded.
+  return officialCombinations.filter(c=>{
+    const subs=comboSubjects(c);
+    return subs.length===3 && !subs.some(isForbiddenCombinationSubject);
+  }).map(c=>{
+    const subs=comboSubjects(c), main=subs.filter(s=>pathwayMatchesSubject(c[0],s)), complementary=subs.filter(s=>!pathwayMatchesSubject(c[0],s));
+    let score=0,matches=[];
+    preferred.forEach(sel=>{
+      const b=normalizeSubject(sel);
+      const hit=subs.find(s=>normalizeSubject(s)===b||normalizeSubject(s).includes(b)||b.includes(normalizeSubject(s)));
+      if(hit&&!matches.includes(hit)){matches.push(hit);score+=25;}
+    });
+    if(String(c[0]).toUpperCase()===String(bestPath).toUpperCase())score+=12;
+    score+=main.length*4+complementary.length*2;
+    return {data:c,score,matches,main,complementary};
+  }).sort((a,b)=>b.score-a.score||String(a.data[3]).localeCompare(String(b.data[3])));
+}
+
+function renderCombinations(){
+  const box=document.getElementById("combinations");
+  if(!box) return;
+
+  const ranked=rankedOfficialCombinations();
+
+  // Show several strong official combinations, prioritising the learner's
+  // recommended pathway but keeping alternatives visible when available.
+  const pathwayTop=ranked.filter(x=>
+    String(x.data[0]).toUpperCase()===String(bestPath).toUpperCase()
+  );
+  const otherTop=ranked.filter(x=>
+    String(x.data[0]).toUpperCase()!==String(bestPath).toUpperCase()
+  );
+  const top=[...pathwayTop, ...otherTop].filter((item,index,self)=>index===self.findIndex(y=>y.data[3]===item.data[3])).slice(0,12);
+
+  if(!top.length){
+    box.innerHTML=`<div class="notice">
+      <b>No matching official combination found.</b>
+      Please select one or more relevant subjects under <b>Subjects You Like</b>.
+    </div>`;
+    return;
+  }
+
+  box.innerHTML=`
+    <div class="notice" style="margin-bottom:12px">
+      <b>Two + One pathway guide:</b> each recommendation contains <b>two main subjects from the recommended pathway</b>
+      plus <b>one complementary subject from another pathway</b>. <b>Core Mathematics and Advanced Mathematics are excluded.</b>
+      Your complete assessment is used to rank the combinations. Confirm final availability with the official Grade 10 Selection System.
+    </div>
+    ${top.map((x,i)=>{
+      const c=x.data;
+      const matched=x.matches||[];
+      return `
+        <div class="info" style="margin-bottom:10px">
+          <strong>${i+1}. ${c[2]}</strong>
+          <span style="display:block;margin:6px 0">
+            <span class="badge">${c[0]}</span>
+            <span class="badge">${c[1]}</span>
+          </span>
+          <small class="muted">
+            <b>Combination Code:</b> ${c[3]}
+            ${matched.length ? ` • <b>Subject matches:</b> ${matched.join(", ")}` : ""}
+          </small>
+        </div>`;
+    }).join("")}
+    <div class="actions no-print">
+      <a class="btn secondary" href="${OFFICIAL_SOURCE_URL}" target="_blank" rel="noopener">
+        Open official combination list
+      </a>
+    </div>`;
+}
+
+
+function updateProgress(){
+  const answered=[
+    document.getElementById("name").value.trim(),
+    document.getElementById("grade").value,
+    selected.interest.length,
+    Object.keys(selected.rating).length,
+    selected.activity.length,
+    selected.subject.length,
+    document.getElementById("environment").value,
+    document.getElementById("motivation").value,
+    document.getElementById("workPreference").value,
+    document.getElementById("impact").value,
+    document.getElementById("problemStyle").value,
+    document.getElementById("variety").value
+  ];
+  const count=answered.filter(v=>v && v!==0).length;
+  const pct=Math.round(count/13*100);
+  const bar=document.getElementById("progressBar");
+  const txt=document.getElementById("progressText");
+  const pctEl=document.getElementById("progressPct");
+  if(bar) bar.style.width=pct+"%";
+  if(txt) txt.textContent=count>=8 ? "Assessment complete" : "Assessment progress";
+  if(pctEl) pctEl.textContent=pct+"%";
+}
+
+function saveReport(){
+  if(!results.length){alert("Generate the report first, then save it.");return}
+  const payload={
+    savedAt:new Date().toISOString(),
+    learner:{
+      name:document.getElementById("name").value,
+      grade:document.getElementById("grade").value,
+      school:document.getElementById("school").value
+    },
+    answers:{
+      freeText:document.getElementById("freeText").value,
+      interests:selected.interest,
+      activities:selected.activity,
+      subjects:selected.subject,
+      ratings:selected.rating,
+      environment:document.getElementById("environment").value,
+      motivation:document.getElementById("motivation").value,
+      workPreference:document.getElementById("workPreference").value,
+      impact:document.getElementById("impact").value,
+      problemStyle:document.getElementById("problemStyle").value,
+      variety:document.getElementById("variety").value
+    },
+    recommendedPathway:bestPath,
+    topCareers:results.filter(x=>x.data[1]===bestPath).slice(0,10).map(x=>x.data[0])
+  };
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="cbc-career-report-"+(payload.learner.name||"learner").trim().replace(/\s+/g,"-").toLowerCase()+".json";
+  a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),500);
+}
+
+function resetAll(){
+  if(confirm("Clear this assessment and start again?")) location.reload();
+}
+updateProgress();
+</script>
+</body>
+</html>
