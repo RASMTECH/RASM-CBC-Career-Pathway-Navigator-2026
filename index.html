@@ -16,6 +16,10 @@ header{background:var(--navy);color:#fff;padding:16px;position:sticky;top:0;z-in
 .card{padding:22px;margin-bottom:18px}.card h3{margin:0 0 15px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 label{font-weight:bold;display:block;margin-bottom:7px;font-size:14px}input,select,textarea{width:100%;padding:12px;border:1px solid var(--border);border-radius:9px;background:#fff;font-size:15px}textarea{min-height:110px;resize:vertical}
 .chips{display:flex;flex-wrap:wrap;gap:9px}.chip{border:1px solid var(--border);background:#fff;border-radius:22px;padding:9px 13px;cursor:pointer}.chip.selected{background:var(--blue);color:#fff;border-color:var(--blue)}
+.language-bar{display:flex;justify-content:flex-end;margin:0 0 12px}.lang-btn{border:1px solid #cbd5e1;background:#fff;color:#17202a;border-radius:10px;padding:9px 13px;font-weight:800;cursor:pointer;box-shadow:0 2px 8px #0001}.lang-btn:hover{transform:translateY(-1px);box-shadow:0 5px 12px #0002}.interest-groups{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px}.interest-group{border:1px solid var(--border);border-radius:14px;padding:14px;background:#fff}.interest-group-title{display:flex;align-items:center;gap:8px;font-weight:900;font-size:15px;padding:10px 12px;border-radius:10px;margin-bottom:12px}.interest-group.stem .interest-group-title{background:#e8f1ff;color:#0756b3;border-left:5px solid #0b5ed7}.interest-group.social .interest-group-title{background:#e8f8ef;color:#117143;border-left:5px solid #198754}.interest-group.arts .interest-group-title{background:#fff0e1;color:#a85a00;border-left:5px solid #f59f00}.interest-group.stem .chip.selected{background:#0b5ed7;border-color:#0b5ed7}.interest-group.social .chip.selected{background:#198754;border-color:#198754}.interest-group.arts .chip.selected{background:#f59f00;border-color:#f59f00;color:#fff}.pathway-key{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}.pathway-key span{font-size:12px;font-weight:800;padding:6px 9px;border-radius:999px}.key-stem{background:#e8f1ff;color:#0756b3}.key-social{background:#e8f8ef;color:#117143}.key-arts{background:#fff0e1;color:#a85a00}@media(max-width:800px){.interest-groups{grid-template-columns:1fr}}
+
+.language-bar{display:flex;justify-content:flex-end;margin:0 0 12px}.lang-btn{border:1px solid #cbd5e1;background:#fff;color:#17202a;border-radius:10px;padding:9px 13px;font-weight:800;cursor:pointer;box-shadow:0 2px 8px #0001}.lang-btn:hover{transform:translateY(-1px);box-shadow:0 5px 12px #0002}.interest-groups{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px}.interest-group{border:1px solid var(--border);border-radius:14px;padding:14px;background:#fff}.interest-group-title{display:flex;align-items:center;gap:8px;font-weight:900;font-size:15px;padding:10px 12px;border-radius:10px;margin-bottom:12px}.interest-group.stem .interest-group-title{background:#e8f1ff;color:#0756b3;border-left:5px solid #0b5ed7}.interest-group.social .interest-group-title{background:#e8f8ef;color:#117143;border-left:5px solid #198754}.interest-group.arts .interest-group-title{background:#fff0e1;color:#a85a00;border-left:5px solid #f59f00}.interest-group.stem .chip.selected{background:#0b5ed7;border-color:#0b5ed7}.interest-group.social .chip.selected{background:#198754;border-color:#198754}.interest-group.arts .chip.selected{background:#f59f00;border-color:#f59f00;color:#fff}.pathway-key{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}.pathway-key span{font-size:12px;font-weight:800;padding:6px 9px;border-radius:999px}.key-stem{background:#e8f1ff;color:#0756b3}.key-social{background:#e8f8ef;color:#117143}.key-arts{background:#fff0e1;color:#a85a00}@media(max-width:800px){.interest-groups{grid-template-columns:1fr}}
+
 .rating{display:grid;grid-template-columns:1fr 1fr;gap:12px}.rating-row{border:1px solid var(--border);padding:13px;border-radius:10px}.rating-row span{display:block;color:var(--muted);font-size:13px;margin-bottom:9px}.rating-btns{display:flex;gap:5px}.rating-btn{flex:1;border:1px solid var(--border);background:#fff;border-radius:7px;padding:7px;cursor:pointer}.rating-btn.selected{background:#07131f;color:#fff}
 .actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.btn{border:0;border-radius:9px;padding:12px 17px;font-weight:bold;cursor:pointer;transition:.18s ease}
 .btn:hover{transform:translateY(-1px);box-shadow:0 5px 14px #0002}
@@ -189,6 +193,8 @@ footer{background:#172554;color:#dbeafe;margin-top:25px;border-top:4px solid #f5
 </section>
 
 <div id="assessment">
+<div class="language-bar no-print"><button type="button" id="languageToggle" class="lang-btn" onclick="toggleLanguage()">🌐 Kiswahili</button></div>
+<div class="language-bar no-print"><button type="button" id="languageToggle" class="lang-btn" onclick="toggleLanguage()">🌐 Kiswahili</button></div>
 <div class="steps"><div class="step active">1 Learner</div><div class="step">2 Interests</div><div class="step">3 Strengths</div><div class="step">4 Activities</div><div class="step">5 Subjects</div><div class="step">6 Results</div></div>
 
 <section class="card">
@@ -207,7 +213,7 @@ footer{background:#172554;color:#dbeafe;margin-top:25px;border-top:4px solid #f5
 <label>Describe freely</label>
 <textarea id="freeText" placeholder="Example: I enjoy computers, solving mathematics problems, repairing machines and building things."></textarea>
 <label style="margin-top:15px">Select as many as apply</label>
-<div class="chips" id="interestChips"></div>
+<div class="pathway-key" aria-label="Pathway colours"><span class="key-stem">🔵 STEM</span><span class="key-social">🟢 Social Sciences</span><span class="key-arts">🟠 Arts & Sports Science</span></div><div class="interest-groups" id="interestChips"></div>
 </section>
 
 <section class="card">
@@ -295,8 +301,8 @@ footer{background:#172554;color:#dbeafe;margin-top:25px;border-top:4px solid #f5
 <div class="card"><h3>📚 Recommended Subject Areas</h3><table><thead><tr><th>Subject / area</th><th>Why it is useful</th></tr></thead><tbody id="subjects"></tbody></table></div>
 
 <div class="card"><h3>🎓 Related Course / Training Areas</h3><div id="courses" class="chips"></div></div>
-<div class="card"><h3>🧩 Recommended Grade 10 Subject Combinations</h3>
-<p class="muted">The navigator intelligently recommends Grade 10 subject combinations using the learner's strongest pathway, favourite subjects and pathway balance. When one pathway is strongest, the first two subjects are prioritised from that pathway and the third broadens the learner's options. When pathways are equal, the planner aims for one subject from each pathway. Confirm availability and final eligibility in the official Grade 10 Selection System.</p>
+<div class="card"><h3>🧩 Recommended Grade 10 Subject Combinations</h3><div id="strictComboNote" style="margin:10px 0 14px;padding:12px 14px;border-radius:12px;background:#fff7ed;border:1px solid #fed7aa;font-size:13px;line-height:1.5"><strong>Combination rule:</strong> 2 subjects from the strongest pathway + 1 subject from one other pathway. Only this 2+1 structure is shown when one pathway is strongest.</div>
+<p class="muted">The navigator intelligently ranks official Grade 10 subject combinations by merging the learner's interests, natural strengths, preferred activities, favourite subjects, work style, motivation, strongest pathway and the careers that best match the complete assessment. Sports & Recreation is explicitly prioritised when sports signals are strong, and security/public-service careers are included when those interests appear. Confirm availability and final eligibility in the official Grade 10 Selection System.</p>
 <div id="combinations"></div><div class="section-actions no-print"><button class="btn primary" onclick="printSubjectCombinations()">🖨 Print Subject Combinations</button><button class="btn whatsapp-btn" onclick="shareCombinationsWhatsApp()">🟢 Share Combinations on WhatsApp</button></div></div>
 
 <div class="card"><h3>🔄 Alternative Pathways</h3><div id="alternatives"></div></div>
@@ -322,10 +328,25 @@ const interests=[
 ["Graphic design","design"],["Fashion / textiles","fashion"],["Music / singing","music"],["Acting / drama","acting"],["Dance / choreography","dance"],
 ["Film / video","film"],["Photography","photo"],["Writing / storytelling","writing"],["Reading / research","research"],["Languages","languages"],
 ["Teaching","teaching"],["Helping people","helping"],["Counselling / listening","counselling"],["Leadership","leadership"],["Business / entrepreneurship","business"],
-["Law / justice","law"],["Debate / public speaking","debate"],["Agriculture / farming","agriculture"],["Animals / veterinary work","animals"],
-["Environment / nature","environment"],["Tourism / travel","tourism"],["Cooking / food","food"],["Community service","community"],["Sports / fitness","sports"],
-["Football","football"],["Athletics","athletics"],["Coaching","coaching"],["Games / e-sports","games"],["Media / social media","media"]
-];
+["Law / justice","law"],["Debate / public speaking","debate"],["Agriculture / farming",],["Animals / veterinary work",],
+["Environment / nature",],["Tourism / travel","tourism"],["Cooking / food","food"],["Community service","community"],["Sports / fitness","sports"],
+["Football","football"],["Athletics","athletics"],["Coaching","coaching"],["Games / e-sports","games"],["Media / social media","media"],
+["Security / public safety","security"],["Police / law enforcement","policing"],["Defence / military service","defence"],
+["Cybersecurity / digital safety","cybersecurity"],["Websites / app development","webdev"],["Data analysis / statistics","data"],["Astronomy / space","astronomy"],["Chemistry / chemical science","chemistry"],["Physics / physical science","physics"],["Laboratory science","laboratory"],["Geology / rocks and earth science","geology"],["Weather / climate science","climate"],["Renewable energy","renewable"],["Solar energy / solar technology","solar"],["Medical technology / diagnostics","medtech"],["Nutrition / food science","nutrition"],["Water systems / water technology","watertech"],
+["Medicine / healthcare","healthcare"],["Pharmacy / medicines","pharmacy"],["Mental health / psychology","psychology"],["First aid / emergency care","emergency"],
+["Architecture / interior spaces","architecture"],["Carpentry / woodwork","woodwork"],["Plumbing / water systems","plumbing"],["Mechanics / vehicles","automotive"],
+["Fashion business / styling","fashionbusiness"],["Beauty / personal care","beauty"],["Crafts / handmade products","crafts"],["Animation / digital art","animation"],
+["Journalism / news","journalism"],["Radio / presenting","broadcasting"],["Politics / governance","governance"],["Economics / money","economics"],["Sociology / society","sociology"],["History / heritage","historyinterest"],["Culture / traditions","culture"],["Public administration","publicadmin"],["Diplomacy / international relations","diplomacy"],["International relations / global affairs","international"],["Banking / financial services","banking"],["Customer service / client relations","customerservice"],["Human behaviour / social studies","humanbehaviour"],
+["Accounting / finance","finance"],["Marketing / advertising","marketing"],["Human rights / advocacy","advocacy"],["Public service","publicservice"],
+["Wildlife / conservation","wildlife"],["Forestry / trees","forestry"],["Fishing / marine life","marine"],["Hospitality / hotels","hospitality"],
+["Event planning","events"],["Air travel / aviation","aviation"],["Ships / maritime work","maritime"],["Entrepreneurship / starting businesses","entrepreneurship"]
+,["Basketball","basketball"],["Volleyball","volleyball"],["Swimming","swimming"],["Fitness & physical training","fitness"],
+["Playing musical instruments","instrumental"],["Theatre & stage performance","theatre"],["Drawing & sketching","drawing"],
+["Painting & fine art","painting"],["Sculpture & 3D art","sculpture"],["Graphic design","graphicdesign"],
+["Creative writing & storytelling","creativewriting"],["Poetry & spoken word","poetry"],["Journalism & media","journalism"],
+["Radio & broadcasting","broadcasting"],["Digital content creation","contentcreation"],["Podcasting","podcasting"],
+["Event production","eventproduction"],["Interior design","interiordesign"],["Culinary arts & food presentation","culinaryarts"],
+["Fashion business & merchandising","fashionbusiness"],["Agriculture / farming","agriculture"],["Animals / veterinary work","animals"],["Environment / nature","environment"]];
 const activities=[
 ["Build or repair things","machines"],["Use computers","tech"],["Code a website/app","programming"],["Design a robot or automated system","robotics"],
 ["Explore AI and new technology","ai"],["Analyse numbers/data","math"],["Conduct experiments","science"],["Research health/biology topics","biology"],
@@ -335,9 +356,10 @@ const activities=[
 ["Take photos/videos","photo"],["Edit videos/content","media"],["Play competitive sports","sports"],["Play football","football"],
 ["Train or coach others","coaching"],["Run a business","business"],["Sell or market products","business"],["Debate or argue ideas","law"],
 ["Speak to an audience","debate"],["Teach or explain","teaching"],["Counsel/listen to people","counselling"],["Volunteer in the community","community"],
-["Work outdoors","environment"],["Farm or grow crops","agriculture"],["Work with animals","animals"],["Plan trips/events","tourism"],
+["Work outdoors",],["Farm or grow crops",],["Work with animals",],["Plan trips/events","tourism"],
 ["Cook or create food","food"],["Lead a team/project","leadership"],["Organise activities","organisation"],["Create online content","media"],
-["Explore games/e-sports","games"]
+["Explore games/e-sports","games"],
+["Take part in community safety or public service","publicservice"],["Train for fitness and physical performance","fitness"],["Investigate problems and find facts","investigation"]
 ];
 const NON_MATCHING_SUBJECTS = new Set(["core mathematics","essential mathematics","english","kiswahili","kiswahili/ksl","community service learning","community service learning (csl)"]);
 // KICD Senior School: 38 subjects/learning areas listed across the Core,
@@ -349,15 +371,56 @@ const subjects=[
   // Social Sciences
   ["Literature in English","literature"],["Indigenous Languages","indigenous language"],["Fasihi ya Kiswahili","fasihi ya kiswahili"],["Sign Language","sign language"],["Arabic","arabic"],["French","french"],["German","german"],["Mandarin Chinese","mandarin"],["Christian Religious Education","christian religious education"],["Islamic Religious Education","islamic religious education"],["Hindu Religious Education","hindu religious education"],["Business Studies","business studies"],["History and Citizenship","history"],["Geography","geography"],
   // STEM
-  ["Biology","biology"],["Chemistry","chemistry"],["Physics","physics"],["General Science","general science"],["Agriculture","agriculture"],["Computer Studies","computer studies"],["Home Science","home science"],["Aviation","aviation"],["Building Construction","building construction"],["Electricity","electricity"],["Metalwork","metalwork"],["Power Mechanics","power mechanics"],["Wood Technology","wood technology"],["Media Technology","media technology"],["Marine and Fisheries Technology","marine and fisheries technology"]
+  ["Biology","biology"],["Chemistry","chemistry"],["Physics","physics"],["General Science","general science"],["Agriculture",],["Computer Studies","computer studies"],["Home Science","home science"],["Aviation","aviation"],["Building Construction","building construction"],["Electricity","electricity"],["Metalwork","metalwork"],["Power Mechanics","power mechanics"],["Wood Technology","wood technology"],["Media Technology","media technology"],["Marine and Fisheries Technology","marine and fisheries technology"]
 ];
 // Four broader strength groups. Each group preserves the original skills underneath
 // so pathway/career scoring still uses all the learner's signals.
 const interestToActivities={
- tech:["tech","programming","robotics","ai","machines","electronics","engineering"], programming:["programming","tech","robotics","ai","math","research"], robotics:["robotics","programming","electronics","machines","tech"], ai:["ai","programming","tech","research","math"], math:["math","research","tech","programming","science"], science:["science","biology","research","math"], biology:["biology","science","research","animals"], machines:["machines","building","electronics","engineering"], building:["building","machines","design","visual","engineering"], electronics:["electronics","tech","machines","robotics","engineering"], engineering:["engineering","building","machines","electronics","robotics","tech"], visual:["visual","design","fine arts","building","fashion"], design:["design","visual","fashion","media","building"], fashion:["fashion","design","visual"], music:["music","acting","dance","media"], acting:["acting","music","media","debate"], dance:["dance","music","acting","sports"], film:["media","acting","photo","writing","design"], photo:["photo","media","visual","design"], writing:["writing","research","media","debate","literature"], research:["research","science","biology","math"], languages:["languages","debate","writing","teaching"], teaching:["teaching","communication","research","writing"], helping:["helping","counselling","teaching","community"], counselling:["counselling","helping","communication","community"], leadership:["leadership","business","organisation","debate"], business:["business","leadership","organisation","media"], law:["law","debate","writing","research","leadership"], debate:["debate","law","communication","writing","leadership"], agriculture:["agriculture","animals","environment","food"], animals:["animals","biology","agriculture","environment"], environment:["environment","agriculture","animals","research"], tourism:["tourism","communication","languages","business","organisation"], food:["food","business","agriculture"], community:["community","helping","teaching","counselling","leadership"], sports:["sports","coaching","football","fitness","team"], football:["football","sports","coaching","team"], athletics:["sports","fitness","coaching"], coaching:["coaching","sports","teaching","leadership"], games:["games","tech","programming","media","design"], media:["media","writing","photo","film","design"]
-};
+ tech:["tech","programming","robotics","ai","machines","electronics","engineering"], programming:["programming","tech","robotics","ai","math","research"], robotics:["robotics","programming","electronics","machines","tech"], ai:["ai","programming","tech","research","math"], math:["math","research","tech","programming","science"], science:["science","biology","research","math"], biology:["biology","science","research",], machines:["machines","building","electronics","engineering"], building:["building","machines","design","visual","engineering"], electronics:["electronics","tech","machines","robotics","engineering"], engineering:["engineering","building","machines","electronics","robotics","tech"], visual:["visual","design","fine arts","building","fashion"], design:["design","visual","fashion","media","building"], fashion:["fashion","design","visual"], music:["music","acting","dance","media"], acting:["acting","music","media","debate"], dance:["dance","music","acting","sports"], film:["media","acting","photo","writing","design"], photo:["photo","media","visual","design"], writing:["writing","research","media","debate","literature"], research:["research","science","biology","math"], languages:["languages","debate","writing","teaching"], teaching:["teaching","communication","research","writing"], helping:["helping","counselling","teaching","community"], counselling:["counselling","helping","communication","community"], leadership:["leadership","business","organisation","debate"], business:["business","leadership","organisation","media"], law:["law","debate","writing","research","leadership"], debate:["debate","law","communication","writing","leadership"], agriculture:[,,,"food"], animals:[,"biology",,], environment:[,,,"research"], tourism:["tourism","communication","languages","business","organisation"], food:["food","business",], community:["community","helping","teaching","counselling","leadership"], sports:["sports","coaching","football","fitness","team"], football:["football","sports","coaching","team"], athletics:["sports","fitness","coaching"], coaching:["coaching","sports","teaching","leadership"], games:["games","tech","programming","media","design"], media:["media","writing","photo","film","design"],
+ cybersecurity:["tech","programming","research"], webdev:["programming","tech","design"], data:["math","research","tech"], astronomy:["science","research","math","tech"], chemistry:["science","research","math","laboratory"], physics:["science","math","engineering","research"], laboratory:["science","biology","chemistry","research"], geology:["science","environment","research"], climate:["environment","science","research"], renewable:["engineering","electronics","science","environment"], solar:["electronics","engineering","science"], medtech:["healthcare","biology","science","tech"], nutrition:["biology","science","food","healthcare"], watertech:["plumbing","environment","engineering","science"],
+ healthcare:["biology","science","helping","research"], pharmacy:["biology","science","research","helping"], psychology:["counselling","helping","research","communication"], emergency:["helping","science","biology","team"],
+ architecture:["building","design","visual","engineering"], woodwork:["machines","building","design"], plumbing:["machines","building","engineering"], automotive:["machines","engineering","electronics"],
+ fashionbusiness:["fashion","design","business"], beauty:["visual","design","helping","business"], crafts:["visual","design","fashion","business"], animation:["design","visual","media","film"],
+ journalism:["writing","media","research","debate"], broadcasting:["media","communication","writing","photo"], governance:["leadership","law","debate","community"], economics:["math","business","research","leadership"], sociology:["research","community","helping","counselling"], historyinterest:["research","debate","community","writing"], culture:["languages","community","writing","tourism"], publicadmin:["governance","publicservice","leadership","community"], diplomacy:["languages","debate","governance","communication"], international:["languages","tourism","governance","research"], banking:["finance","business","math","research"], customerservice:["helping","business","communication","hospitality"], humanbehaviour:["counselling","helping","research","community"],
+ finance:["math","business","research","leadership"], marketing:["business","media","communication","design"], advocacy:["law","debate","community","helping"], publicservice:["community","leadership","helping","law"],
+ wildlife:[,,"biology","research"], forestry:[,,"research"], marine:[,,"science"], hospitality:["tourism","food","business","communication"],
+ events:["tourism","organisation","leadership","media"], aviation:["engineering","machines","tech","science"], maritime:["engineering","machines",,"science"], entrepreneurship:["business","leadership","organisation","media"],
+ security:["publicservice","leadership","law","community","sports","coaching","fitness","investigation"],
+ policing:["publicservice","law","leadership","community","team","sports","fitness","investigation"],
+ defence:["publicservice","leadership","team","sports","coaching","fitness","practical"]
+,basketball:["sports","team","fitness","coaching"], volleyball:["sports","team","fitness","coaching"],
+ swimming:["sports","fitness","science"], fitness:["sports","coaching","healthcare","team"],
+ instrumental:["music","media","creative"], theatre:["acting","music","dance","media"],
+ drawing:["visual","design","fine arts"], painting:["visual","design","fine arts"],
+ sculpture:["visual","design","building"], graphicdesign:["design","visual","media","tech"],
+ creativewriting:["writing","media","debate"], poetry:["writing","music","acting"],
+ journalism:["writing","media","research","debate"], broadcasting:["media","communication","writing"],
+ contentcreation:["media","writing","photo","film","design"], podcasting:["media","communication","writing"],
+ eventproduction:["events","media","acting","leadership"], interiordesign:["design","visual","building"],
+ culinaryarts:["food","business","creative","practical"], fashionbusiness:["fashion","design","business"]};
 const activityToSubjects={
- machines:["Physics","Computer Studies","Building & Construction","Metal Work","Power Mechanics"], tech:["Computer Studies","Physics","Essential Mathematics","Media Technology","Aviation"], programming:["Computer Studies","Essential Mathematics","Physics","Media Technology"], robotics:["Computer Studies","Physics","Essential Mathematics","Electricity"], ai:["Computer Studies","Essential Mathematics","Physics","Biology"], math:["Essential Mathematics","Physics","Chemistry","Computer Studies"], science:["Biology","Chemistry","Physics","General Science"], biology:["Biology","Chemistry","Agriculture","General Science"], building:["Building & Construction","Physics","Fine Arts","Essential Mathematics"], electronics:["Electricity","Physics","Computer Studies","Essential Mathematics"], engineering:["Physics","Essential Mathematics","Computer Studies","Building & Construction"], visual:["Fine Arts","Theatre & Film","English","Media Technology"], design:["Fine Arts","Computer Studies","English","Building & Construction"], fashion:["Fine Arts","Home Science","Business Studies","English"], music:["Music & Dance","English","Fine Arts","Theatre & Film"], acting:["Theatre & Film","English","Fasihi ya Kiswahili","Music & Dance"], dance:["Music & Dance","Sports & Recreation","Theatre & Film","Biology"], media:["Media Technology","English","Fine Arts","Computer Studies"], photo:["Media Technology","Fine Arts","English","Computer Studies"], writing:["English","Literature in English","Fasihi ya Kiswahili","History & Citizenship"], research:["Biology","Chemistry","Physics","Geography"], languages:["English","Fasihi ya Kiswahili","Indigenous Language","French"], teaching:["English","Kiswahili","History & Citizenship","Geography"], helping:["Biology","English","History & Citizenship","Christian Religious Education"], counselling:["English","History & Citizenship","Biology","Christian Religious Education"], leadership:["Business Studies","History & Citizenship","Geography","English"], business:["Business Studies","Essential Mathematics","English","Computer Studies"], law:["English","History & Citizenship","Fasihi ya Kiswahili","Business Studies"], debate:["English","History & Citizenship","Fasihi ya Kiswahili","Geography"], agriculture:["Agriculture","Biology","Chemistry","Geography"], animals:["Biology","Agriculture","Chemistry","General Science"], environment:["Geography","Biology","Agriculture","Chemistry"], tourism:["Geography","English","Business Studies","French"], food:["Home Science","Agriculture","Business Studies","Chemistry"], community:["History & Citizenship","Geography","English","Christian Religious Education"], sports:["Sports and Recreation","Biology","General Science"], football:["Sports and Recreation","Biology","General Science"], athletics:["Sports and Recreation","Biology","General Science"], coaching:["Sports and Recreation","Biology","History and Citizenship"], games:["Computer Studies","Media Technology","Essential Mathematics","Fine Arts"]
+ machines:["Physics","Computer Studies","Building & Construction","Metal Work","Power Mechanics"], tech:["Computer Studies","Physics","Essential Mathematics","Media Technology","Aviation"], programming:["Computer Studies","Essential Mathematics","Physics","Media Technology"], robotics:["Computer Studies","Physics","Essential Mathematics","Electricity"], ai:["Computer Studies","Essential Mathematics","Physics","Biology"], math:["Essential Mathematics","Physics","Chemistry","Computer Studies"], science:["Biology","Chemistry","Physics","General Science"], biology:["Biology","Chemistry","Agriculture","General Science"], building:["Building & Construction","Physics","Fine Arts","Essential Mathematics"], electronics:["Electricity","Physics","Computer Studies","Essential Mathematics"], engineering:["Physics","Essential Mathematics","Computer Studies","Building & Construction"], visual:["Fine Arts","Theatre & Film","English","Media Technology"], design:["Fine Arts","Computer Studies","English","Building & Construction"], fashion:["Fine Arts","Home Science","Business Studies","English"], music:["Music & Dance","English","Fine Arts","Theatre & Film"], acting:["Theatre & Film","English","Fasihi ya Kiswahili","Music & Dance"], dance:["Music & Dance","Sports and Recreation","Theatre & Film","Biology"], media:["Media Technology","English","Fine Arts","Computer Studies"], photo:["Media Technology","Fine Arts","English","Computer Studies"], writing:["English","Literature in English","Fasihi ya Kiswahili","History & Citizenship"], research:["Biology","Chemistry","Physics","Geography"], languages:["English","Fasihi ya Kiswahili","Indigenous Language","French"], teaching:["English","Kiswahili","History & Citizenship","Geography"], helping:["Biology","English","History & Citizenship","Christian Religious Education"], counselling:["English","History & Citizenship","Biology","Christian Religious Education"], leadership:["Business Studies","History & Citizenship","Geography","English"], business:["Business Studies","Essential Mathematics","English","Computer Studies"], law:["English","History & Citizenship","Fasihi ya Kiswahili","Business Studies"], debate:["English","History & Citizenship","Fasihi ya Kiswahili","Geography"], agriculture:["Agriculture","Biology","Chemistry","Geography"], animals:["Biology","Agriculture","Chemistry","General Science"], environment:["Geography","Biology","Agriculture","Chemistry"], tourism:["Geography","English","Business Studies","French"], food:["Home Science","Agriculture","Business Studies","Chemistry"], community:["History & Citizenship","Geography","English","Christian Religious Education"], sports:["Sports and Recreation","Biology","General Science"], football:["Sports and Recreation","Biology","General Science"], athletics:["Sports and Recreation","Biology","General Science"], coaching:["Sports and Recreation","Biology","History and Citizenship"], games:["Computer Studies","Media Technology","Essential Mathematics","Fine Arts"],
+ publicservice:["History & Citizenship","Geography","Business Studies","Biology"], fitness:["Sports and Recreation","Biology","General Science"], investigation:["History & Citizenship","Geography","Computer Studies","Biology"],
+ basketball:["Sports and Recreation","Biology","General Science"],
+ volleyball:["Sports and Recreation","Biology","General Science"],
+ swimming:["Sports and Recreation","Biology","General Science"],
+ fitness:["Sports and Recreation","Biology","General Science"],
+ instrumental:["Music and Dance","Fine Arts","Theatre and Film"],
+ theatre:["Theatre and Film","Music and Dance","Fine Arts"],
+ drawing:["Fine Arts","Media Technology","Business Studies"],
+ painting:["Fine Arts","Media Technology","Theatre and Film"],
+ sculpture:["Fine Arts","Media Technology","Building & Construction"],
+ graphicdesign:["Media Technology","Fine Arts","Business Studies"],
+ creativewriting:["Literature in English","Fine Arts","Media Technology"],
+ poetry:["Literature in English","Fine Arts","Music and Dance"],
+ journalism:["Media Technology","Literature in English","Business Studies"],
+ broadcasting:["Media Technology","Literature in English","Music and Dance"],
+ contentcreation:["Media Technology","Fine Arts","Business Studies"],
+ podcasting:["Media Technology","Literature in English","Music and Dance"],
+ eventproduction:["Media Technology","Business Studies","Theatre and Film"],
+ interiordesign:["Fine Arts","Home Science","Business Studies"],
+ culinaryarts:["Home Science","Business Studies","Fine Arts"],
+ fashionbusiness:["Business Studies","Fine Arts","Home Science"],
 };
 const strengths=[
  ["Thinking & Problem Solving","analytical"],
@@ -381,8 +444,8 @@ const careerDB=[
 ["Architect","STEM","Technical & Engineering",["building","visual","design","math","creative"],["Mathematics","Creative Arts","Integrated Science","ICT / Computing"],["Architecture","Architectural Technology","Interior Design"]],
 ["Medical Doctor","STEM","Pure Sciences",["science","helping","empathy","problem","numbers"],["Integrated Science","Mathematics","English","Social Studies"],["Medicine","Biomedical Sciences","Health Sciences"]],
 ["Laboratory Scientist","STEM","Pure Sciences",["science","math","problem","logic"],["Integrated Science","Mathematics","ICT / Computing","English"],["Medical Laboratory Science","Biological Sciences","Chemistry"]],
-["Environmental Scientist","STEM","Applied Sciences",["environment","science","agriculture","animals","problem"],["Integrated Science","Agriculture","Mathematics","ICT / Computing"],["Environmental Science","Natural Resource Management","Conservation"]],
-["Agricultural Scientist","STEM","Applied Sciences",["agriculture","animals","science","environment","problem"],["Agriculture","Integrated Science","Mathematics","ICT / Computing"],["Agricultural Science","Agribusiness","Animal Science"]],
+["Environmental Scientist","STEM","Applied Sciences",[,"science",,,"problem"],["Integrated Science","Agriculture","Mathematics","ICT / Computing"],["Environmental Science","Natural Resource Management","Conservation"]],
+["Agricultural Scientist","STEM","Applied Sciences",[,,"science",,"problem"],["Agriculture","Integrated Science","Mathematics","ICT / Computing"],["Agricultural Science","Agribusiness","Animal Science"]],
 ["Lawyer","Social Sciences","Humanities & Business Studies",["law","communication","writing","leadership","helping"],["English","Social Studies","Kiswahili","Business Studies"],["Law","Criminology","Legal Studies"]],
 ["Teacher","Social Sciences","Humanities & Business Studies",["teaching","helping","communication","languages","lead","team"],["English","Kiswahili","Social Studies","Relevant subject"],["Education","Early Childhood Education","Teacher Education"]],
 ["Journalist","Social Sciences","Languages & Literature",["writing","communication","languages","photo","film"],["English","Kiswahili","Social Studies","ICT / Computing"],["Journalism","Mass Communication","Digital Media"]],
@@ -411,11 +474,11 @@ const careerDB=[
 ["Biomedical Scientist","STEM","Pure Sciences",["science","biology","health","research","problem","math"],["Integrated Science","Mathematics","English","ICT / Computing"],["Biomedical Science","Biotechnology","Biological Sciences"]],
 ["Pharmacist","STEM","Pure Sciences",["science","health","medicine","math","helping","problem"],["Integrated Science","Mathematics","English"],["Pharmacy","Pharmaceutical Sciences","Health Sciences"]],
 ["Nurse","STEM","Pure Sciences",["science","helping","people","health","empathy","team"],["Integrated Science","English","Mathematics","Social Studies"],["Nursing","Community Health","Health Sciences"]],
-["Veterinary Doctor","STEM","Applied Sciences",["animals","science","helping","agriculture","biology","health"],["Integrated Science","Agriculture","Mathematics","English"],["Veterinary Medicine","Animal Health","Animal Science"]],
+["Veterinary Doctor","STEM","Applied Sciences",[,"science","helping",,"biology","health"],["Integrated Science","Agriculture","Mathematics","English"],["Veterinary Medicine","Animal Health","Animal Science"]],
 ["Quantity Surveyor","STEM","Technical & Engineering",["building","math","construction","business","design","numbers"],["Mathematics","Creative Arts","Business Studies","Integrated Science"],["Quantity Surveying","Construction Management","Building Economics"]],
 ["Automotive Engineer","STEM","Technical & Engineering",["cars","machines","repair","engineering","math","science","practical"],["Mathematics","Integrated Science","Pre-Technical / Technology","ICT / Computing"],["Automotive Engineering","Mechanical Engineering","Mechatronics"]],
 ["Aviation Technician","STEM","Technical & Engineering",["aviation","machines","repair","technology","science","math","practical"],["Mathematics","Integrated Science","ICT / Computing"],["Aviation Technology","Aircraft Maintenance","Aeronautical Engineering"]],
-["Geologist","STEM","Applied Sciences",["science","environment","nature","research","field","math"],["Integrated Science","Mathematics","Geography / Social Studies"],["Geology","Earth Sciences","Environmental Science"]],
+["Geologist","STEM","Applied Sciences",["science",,"nature","research","field","math"],["Integrated Science","Mathematics","Geography / Social Studies"],["Geology","Earth Sciences","Environmental Science"]],
 ["Economist","Social Sciences","Humanities & Business Studies",["business","math","numbers","research","communication","problem"],["Mathematics","Business Studies","Social Studies","English"],["Economics","Finance","Statistics"]],
 ["Marketing Specialist","Social Sciences","Humanities & Business Studies",["business","communication","creative","design","leadership","technology"],["Business Studies","English","ICT / Computing","Creative Arts"],["Marketing","Digital Marketing","Business Administration"]],
 ["Social Worker","Social Sciences","Humanities & Business Studies",["helping","people","empathy","community","communication","teaching"],["Social Studies","English","Kiswahili","Religious Education"],["Social Work","Community Development","Counselling"]],
@@ -433,11 +496,43 @@ const careerDB=[
 ["Referee / Sports Official","Arts & Sports Science","Sports",["sports","football","competition","leadership","communication","rules"],["Physical Education / Sports","Social Studies","English"],["Sports Management","Sports Officiating","Physical Education"]],
 ["Event Manager","Social Sciences","Humanities & Business Studies",["business","leadership","events","communication","organisation","creative"],["Business Studies","English","ICT / Computing","Creative Arts"],["Event Management","Hospitality","Business Administration"]],
 ["Chef / Food Entrepreneur","Social Sciences","Humanities & Business Studies",["cooking","food","business","creative","practical","helping"],["Business Studies","Agriculture","English","Creative Arts"],["Culinary Arts","Hospitality","Food Production"]],
-["Tourism Manager","Social Sciences","Humanities & Business Studies",["travel","people","business","communication","environment","leadership"],["English","Social Studies","Business Studies","Foreign Languages"],["Tourism Management","Hospitality","Travel Operations"]]
+["Tourism Manager","Social Sciences","Humanities & Business Studies",["travel","people","business","communication",,"leadership"],["English","Social Studies","Business Studies","Foreign Languages"],["Tourism Management","Hospitality","Travel Operations"]],
+["Police Officer","Social Sciences","Public Service, Security & Leadership",["security","policing","law","leadership","community","team","physical","communication"],["History & Citizenship","Business Studies","Geography","Biology"],["Criminology","Security Studies","Public Administration","Law"]],
+["General Service Unit (GSU) Officer","Social Sciences","Public Service, Security & Leadership",["security","policing","defence","leadership","team","physical","law","community"],["History & Citizenship","Geography","Biology","Business Studies"],["Security Studies","Criminology","Public Administration","Law"]],
+["Kenya Defence Forces (KDF) Officer","Social Sciences","Public Service, Security & Leadership",["defence","security","leadership","team","physical","practical","community","protect"],["History & Citizenship","Geography","Business Studies","Biology"],["Defence Studies","Security Studies","International Relations","Leadership"]],
+["Correctional / Prisons Officer","Social Sciences","Public Service, Security & Leadership",["security","law","community","leadership","team","physical","helping","communication"],["History & Citizenship","Geography","Business Studies","English"],["Criminology","Correctional Studies","Security Studies","Public Administration"]],
+["Security & Risk Officer","Social Sciences","Public Service, Security & Leadership",["security","leadership","law","business","research","communication","protect","problem"],["Business Studies","History & Citizenship","Geography","Computer Studies"],["Security Management","Risk Management","Criminology","Business Administration"]],
+["Intelligence Analyst","STEM","Careers & Technology Studies",["security","research","technology","computer","logic","problem","analysis","communication"],["Computer Studies","Mathematics","History & Citizenship","English"],["Intelligence Studies","Cybersecurity","Data Analysis","Security Studies"]]
 ]
 
 let selected={interest:[],activity:[],subject:[],rating:{}}, results=[], bestPath="";
 
+const interestSwahili={
+"Computers & technology":"Kompyuta na teknolojia","Programming / coding":"Programu na uandishi wa kodi","Robotics / automation":"Roboti na mifumo otomatiki","Artificial intelligence":"Akili bandia (AI)","Mathematics / numbers":"Hisabati na nambari","Science & experiments":"Sayansi na majaribio","Biology / health":"Biolojia na afya","Machines / repairing":"Mashine na ukarabati","Building / construction":"Ujenzi","Electronics / electricity":"Elektroniki na umeme","Engineering / innovation":"Uhandisi na ubunifu","Drawing / painting":"Kuchora na kupaka rangi","Graphic design":"Ubunifu wa michoro","Fashion / textiles":"Mitindo na nguo","Music / singing":"Muziki na kuimba","Acting / drama":"Uigizaji na drama","Dance / choreography":"Ngoma na uundaji wa miondoko","Film / video":"Filamu na video","Photography":"Upigaji picha","Writing / storytelling":"Uandishi na usimulizi","Reading / research":"Kusoma na utafiti","Languages":"Lugha","Teaching":"Ualimu","Helping people":"Kusaidia watu","Counselling / listening":"Ushauri na kusikiliza","Leadership":"Uongozi","Business / entrepreneurship":"Biashara na ujasiriamali","Law / justice":"Sheria na haki","Debate / public speaking":"Mijadala na kuzungumza hadharani","Agriculture / farming":"Kilimo","Animals / veterinary work":"Wanyama na tiba ya mifugo","Environment / nature":"Mazingira na asili","Tourism / travel":"Utalii na kusafiri","Cooking / food":"Upishi na chakula","Community service":"Huduma kwa jamii","Sports / fitness":"Michezo na mazoezi","Football":"Soka","Athletics":"Riadha","Coaching":"Ukocha","Games / e-sports":"Michezo ya kompyuta / e-sports","Media / social media":"Vyombo vya habari / mitandao ya kijamii","Security / public safety":"Usalama / usalama wa umma","Police / law enforcement":"Polisi / utekelezaji wa sheria","Defence / military service":"Ulinzi / huduma ya kijeshi","Cybersecurity / digital safety":"Usalama wa mtandao","Websites / app development":"Utengenezaji wa tovuti / programu","Data analysis / statistics":"Uchanganuzi wa data / takwimu","Astronomy / space":"Unajimu na anga za juu","Chemistry / chemical science":"Kemia / sayansi ya kemikali","Physics / physical science":"Fizikia / sayansi ya fizikia","Laboratory science":"Sayansi ya maabara","Geology / rocks and earth science":"Jiolojia / miamba na sayansi ya dunia","Weather / climate science":"Hali ya hewa / sayansi ya tabianchi","Renewable energy":"Nishati jadidifu","Solar energy / solar technology":"Nishati ya jua / teknolojia ya jua","Medical technology / diagnostics":"Teknolojia ya tiba / uchunguzi","Nutrition / food science":"Lishe / sayansi ya chakula","Water systems / water technology":"Mifumo ya maji / teknolojia ya maji","Medicine / healthcare":"Udaktari na huduma za afya","Pharmacy / medicines":"Famasi na dawa","Mental health / psychology":"Afya ya akili / saikolojia","First aid / emergency care":"Huduma ya kwanza / dharura","Architecture / interior spaces":"Usanifu wa majengo / nafasi za ndani","Carpentry / woodwork":"Useremala / kazi za mbao","Plumbing / water systems":"Uwekaji mabomba / mifumo ya maji","Mechanics / vehicles":"Ufundi wa magari / mitambo","Fashion business / styling":"Biashara ya mitindo / ushonaji","Beauty / personal care":"Urembo / utunzaji binafsi","Crafts / handmade products":"Ufundi wa bidhaa za mikono","Animation / digital art":"Uhuishaji / sanaa ya kidijitali","Journalism / news":"Uandishi wa habari / habari","Radio / presenting":"Redio / utangazaji","Politics / governance":"Siasa / utawala","Economics / money":"Uchumi / fedha","Sociology / society":"Sosholojia / jamii","History / heritage":"Historia / urithi","Culture / traditions":"Utamaduni / mila","Public administration":"Utawala wa umma","Diplomacy / international relations":"Diplomasia / mahusiano ya kimataifa","International relations / global affairs":"Mahusiano ya kimataifa / masuala ya dunia","Banking / financial services":"Benki / huduma za kifedha","Customer service / client relations":"Huduma kwa wateja / mahusiano ya wateja","Human behaviour / social studies":"Tabia za binadamu / masomo ya jamii","Accounting / finance":"Uhasibu / fedha","Marketing / advertising":"Masoko / matangazo","Human rights / advocacy":"Haki za binadamu / utetezi","Public service":"Huduma za umma","Wildlife / conservation":"Wanyamapori / uhifadhi","Forestry / trees":"Misitu / miti","Fishing / marine life":"Uvuvi / maisha ya baharini","Hospitality / hotels":"Ukarimu / hoteli","Event planning":"Upangaji wa matukio","Air travel / aviation":"Usafiri wa anga / urubani","Ships / maritime work":"Meli / kazi za baharini","Entrepreneurship / starting businesses":"Ujasiriamali / kuanzisha biashara",
+"Basketball":"Mpira wa kikapu","Volleyball":"Mpira wa wavu","Swimming":"Kuogelea","Fitness & physical training":"Mazoezi ya viungo na utimamu",
+"Playing musical instruments":"Kupiga ala za muziki","Theatre & stage performance":"Tamthilia na maonesho ya jukwaani","Drawing & sketching":"Kuchora michoro",
+"Painting & fine art":"Uchoraji wa sanaa","Sculpture & 3D art":"Uchongaji na sanaa za maumbo","Graphic design":"Ubunifu wa michoro",
+"Creative writing & storytelling":"Uandishi wa ubunifu na hadithi","Poetry & spoken word":"Ushairi na ushairi wa kutamka","Journalism & media":"Uandishi wa habari na vyombo vya habari",
+"Radio & broadcasting":"Redio na utangazaji","Digital content creation":"Uundaji wa maudhui ya kidijitali","Podcasting":"Utayarishaji wa podikasti",
+"Event production":"Uzalishaji wa hafla","Interior design":"Ubunifu wa ndani wa majengo","Culinary arts & food presentation":"Sanaa ya upishi na uwasilishaji wa chakula",
+"Fashion business & merchandising":"Biashara ya mitindo na uuzaji wa mavazi"};
+let currentLanguage="en";
+function getInterestLabel(label,val){return currentLanguage==="sw"?(interestSwahili[label]||label):label}
+const uiSwahili={
+"Learner Career Guidance & Pathway Assessment":"Mwongozo wa Kazi na Tathmini ya Njia kwa Mwanafunzi","Print":"Chapisha","Discover Your Career Direction":"Gundua Mwelekeo Wako wa Kazi","Answer the questions honestly. The system combines interests, strengths, favourite subjects and preferred activities to estimate the most suitable pathway, track and career areas.":"Jibu maswali kwa uaminifu. Mfumo unachanganya mapendeleo, uwezo, masomo unayopenda na shughuli unazopendelea ili kukadiria njia na maeneo ya kazi yanayokufaa.","Guidance note:":"Maelezo ya mwongozo:","1. Learner Information":"1. Taarifa za Mwanafunzi","2. What Do You Enjoy?":"2. Unafurahia Nini?","3. What Are You Naturally Good At?":"3. Una Uwezo Gani Kiasili?","4. Activities You Prefer":"4. Shughuli Unazopendelea","5. Subjects You Like":"5. Masomo Unayopenda","6. Work Style":"6. Mtindo wa Kazi","Describe freely":"Eleza kwa uhuru","Select as many as apply":"Chagua zote zinazokuhusu","Name":"Jina","Learner name":"Jina la mwanafunzi","Grade":"Darasa","Select grade":"Chagua darasa","School":"Shule","School name":"Jina la shule","Where would you enjoy working?":"Ungependa kufanya kazi wapi?","What motivates you most?":"Nini kinakuchochea zaidi?"};
+function translateKnownText(){
+ document.querySelectorAll("#assessment label,#assessment h3,#assessment .steps .step,#assessment .hero h2,#assessment .hero p,#assessment .notice b").forEach(el=>{const en=el.dataset.enText||el.textContent.trim();if(!el.dataset.enText)el.dataset.enText=en;const sw=uiSwahili[en];if(sw)el.textContent=currentLanguage==="sw"?sw:en});
+ const ta=document.getElementById("freeText");if(ta)ta.placeholder=currentLanguage==="sw"?"Mfano: Ninafurahia kompyuta, kutatua matatizo ya hisabati, kutengeneza mashine na kujenga vitu.":"Example: I enjoy computers, solving mathematics problems, repairing machines and building things.";
+ const lang=document.getElementById("languageToggle");if(lang)lang.textContent=currentLanguage==="sw"?"🌐 English":"🌐 Kiswahili";
+ const key=document.querySelector(".pathway-key");if(key)key.innerHTML=currentLanguage==="sw"?'<span class="key-stem">🔵 STEM</span><span class="key-social">🟢 Sayansi za Jamii</span><span class="key-arts">🟠 Sanaa na Michezo</span>':'<span class="key-stem">🔵 STEM</span><span class="key-social">🟢 Social Sciences</span><span class="key-arts">🟠 Arts & Sports Science</span>';
+ renderInterestGroups();
+}
+function toggleLanguage(){
+ currentLanguage=currentLanguage==="en"?"sw":"en";
+ translateKnownText();
+ if(typeof window.translateEntirePage==="function") window.translateEntirePage();
+ setTimeout(()=>{if(typeof window.translateEntirePage==="function")window.translateEntirePage()},50);
+}
 function renderChips(id,data,key,limit=Infinity){
  const box=document.getElementById(id); box.innerHTML="";
  data.forEach(([label,val])=>{const b=document.createElement("button");b.type="button";b.className="chip";b.textContent=label;b.dataset.val=val;b.onclick=()=>{
@@ -448,15 +543,57 @@ function renderChips(id,data,key,limit=Infinity){
    if(key==="activity")refreshSubjects();
  };box.appendChild(b)});
 }
+function renderInterestGroups(){
+ const box=document.getElementById("interestChips"); if(!box)return; box.innerHTML="";
+ const groups={
+   STEM:{cls:"stem",icon:"🔵",items:["agriculture","animals","environment","tech","programming","robotics","ai","math","science","biology","machines","building","electronics","engineering","cybersecurity","webdev","data","astronomy","chemistry","physics","laboratory","geology","climate","renewable","solar","medtech","nutrition","watertech","healthcare","pharmacy","emergency","architecture","woodwork","plumbing","automotive","wildlife","forestry","marine","aviation","maritime"]},
+   "Social Sciences":{cls:"social",icon:"🟢",items:["research","languages","teaching","helping","counselling","leadership","business","law","debate",,,,"tourism","food","community","journalism","broadcasting","governance","economics","sociology","historyinterest","culture","publicadmin","diplomacy","international","banking","customerservice","humanbehaviour","finance","marketing","advocacy","publicservice","hospitality","events","psychology","entrepreneurship","security","policing","defence"]},
+   "Arts & Sports Science":{cls:"arts",icon:"🟠",items:["visual","design","fashion","music","acting","dance","film","photo","writing","sports","football","basketball","volleyball","athletics","swimming","coaching","fitness","games","media","instrumental","theatre","drawing","painting","sculpture","graphicdesign","animation","creativewriting","poetry","journalism","broadcasting","contentcreation","podcasting","eventproduction","interiordesign","beauty","culinaryarts","crafts","fashionbusiness"]}
+ };
+ Object.entries(groups).forEach(([name,g])=>{
+   const section=document.createElement("div");section.className="interest-group "+g.cls;
+   const title=document.createElement("div");title.className="interest-group-title";title.innerHTML=`${g.icon} ${currentLanguage==="sw"?(name==="Social Sciences"?"Sayansi za Jamii":name==="Arts & Sports Science"?"Sanaa na Michezo":"STEM"):name}`;section.appendChild(title);
+   const chips=document.createElement("div");chips.className="chips";
+   interests.filter(x=>g.items.includes(x[1])).forEach(([label,val])=>{const b=document.createElement("button");b.type="button";b.className="chip";b.textContent=getInterestLabel(label,val);b.dataset.val=val;b.onclick=()=>{
+   b.classList.toggle("selected");
+   selected.interest=[...box.querySelectorAll(".chip.selected")].map(x=>x.dataset.val);
+   syncAssessmentFromInterests();
+   updateProgress();
+   refreshActivities();
+ };chips.appendChild(b)});
+   section.appendChild(chips);box.appendChild(section);
+ });
+ restoreSelected("interestChips","interest");
+}
 function uniqueByValue(list){const seen=new Set();return list.filter(([label,val])=>{if(seen.has(val))return false;seen.add(val);return true})}
 function restoreSelected(id,key){(selected[key]||[]).forEach(v=>{const b=[...document.querySelectorAll(`#${id} .chip`)].find(x=>x.dataset.val===v);if(b)b.classList.add("selected")})}
 function refreshActivities(){
  const chosen=selected.interest||[], scores={};
  chosen.forEach(i=>(interestToActivities[i]||[]).forEach(a=>scores[a]=(scores[a]||0)+1));
- const relevant=uniqueByValue(activities.filter(x=>scores[x[1]]).sort((a,b)=>(scores[b[1]]||0)-(scores[a[1]]||0)||a[0].localeCompare(b[0])));
- selected.activity=(selected.activity||[]).filter(v=>relevant.some(x=>x[1]===v));
- renderChips("activityChips",relevant,"activity");restoreSelected("activityChips","activity");
- const note=document.getElementById("activityHint");if(note)note.textContent=chosen.length?"Matched to the learner's interests. Select the activities that genuinely describe what you enjoy doing.":"Select interests above to unlock intelligently matched activities.";
+ const relevant=uniqueByValue(
+   activities.filter(x=>scores[x[1]])
+     .sort((a,b)=>(scores[b[1]]||0)-(scores[a[1]]||0)||a[0].localeCompare(b[0]))
+ );
+
+ // Automatically select the strongest activity matches.
+ if(chosen.length){
+   const suggested=relevant.slice(0,6).map(x=>x[1]);
+   selected.activity=Array.from(new Set([
+     ...(selected.activity||[]).filter(v=>relevant.some(x=>x[1]===v)),
+     ...suggested
+   ])).slice(0,8);
+ }else{
+   selected.activity=[];
+ }
+
+ renderChips("activityChips",relevant,"activity");
+ restoreSelected("activityChips","activity");
+
+ const note=document.getElementById("activityHint");
+ if(note)note.textContent=chosen.length
+   ?"Activities have been intelligently matched to What Do You Enjoy? You can change the suggested activities."
+   :"Select interests above to unlock intelligently matched activities.";
+
  refreshSubjects();
 }
 function refreshSubjects(){
@@ -483,7 +620,7 @@ function refreshSubjects(){
  if(note) note.textContent=sportsChosen?"Football/sports detected — showing Arts & Sports Science subjects first. Select up to 3.":chosen.length?"Ranked from your preferred activities and linked to likely career pathways. Select a maximum of 3 subjects.":"Select activities above to receive personalised subject suggestions.";
  const count=document.getElementById("subjectCount");if(count)count.textContent=`${selected.subject.length} / 3 subjects selected`;
 }
-renderChips("interestChips",interests,"interest");
+renderInterestGroups();
 refreshActivities();
 document.querySelectorAll("#assessment input,#assessment select,#assessment textarea").forEach(el=>{
   el.addEventListener("input",updateProgress);
@@ -495,6 +632,186 @@ document.querySelectorAll("#assessment input,#assessment select,#assessment text
  strengths.forEach(([label,key])=>{const row=document.createElement("div");row.className="rating-row";row.innerHTML="<span>"+label+"</span><div class='rating-btns'></div>";const r=row.querySelector(".rating-btns");for(let n=1;n<=5;n++){const b=document.createElement("button");b.className="rating-btn";b.textContent=n;b.onclick=()=>{r.querySelectorAll(".rating-btn").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");selected.rating[key]=n;updateProgress()};r.appendChild(b)}box.appendChild(row)})
 })();
 
+
+
+// ================================================================
+// INTELLIGENT ANSWER PROPAGATION
+// "What Do You Enjoy?" automatically suggests strengths, activities,
+// working environment, motivation and work preference. Learners can
+// still change any of these suggested answers.
+// ================================================================
+const interestAssessmentProfile={
+ tech:{analytical:5,creative:3,people:2,practical:4,env:"technology",mot:"innovate",work:"handsOn"},
+ programming:{analytical:5,creative:4,people:2,practical:3,env:"technology",mot:"solve",work:"independent"},
+ robotics:{analytical:5,creative:4,people:2,practical:5,env:"workshop",mot:"innovate",work:"handsOn"},
+ ai:{analytical:5,creative:4,people:2,practical:3,env:"technology",mot:"innovate",work:"research"},
+ math:{analytical:5,creative:2,people:2,practical:2,env:"technology",mot:"solve",work:"research"},
+ science:{analytical:5,creative:3,people:2,practical:3,env:"technology",mot:"discover",work:"research"},
+ biology:{analytical:4,creative:2,people:4,practical:3,env:"hospital",mot:"discover",work:"research"},
+ machines:{analytical:4,creative:2,people:2,practical:5,env:"workshop",mot:"solve",work:"handsOn"},
+ building:{analytical:4,creative:4,people:2,practical:5,env:"workshop",mot:"create",work:"handsOn"},
+ electronics:{analytical:5,creative:3,people:2,practical:5,env:"workshop",mot:"solve",work:"handsOn"},
+ engineering:{analytical:5,creative:4,people:2,practical:5,env:"workshop",mot:"innovate",work:"handsOn"},
+ cybersecurity:{analytical:5,creative:3,people:3,practical:3,env:"technology",mot:"protect",work:"research"},
+ webdev:{analytical:5,creative:4,people:2,practical:3,env:"technology",mot:"create",work:"independent"},
+ data:{analytical:5,creative:2,people:2,practical:2,env:"technology",mot:"solve",work:"research"},
+ astronomy:{analytical:5,creative:3,people:2,practical:2,env:"field",mot:"discover",work:"research"},
+ healthcare:{analytical:4,creative:2,people:5,practical:4,env:"hospital",mot:"help",work:"people"},
+ pharmacy:{analytical:5,creative:2,people:4,practical:3,env:"hospital",mot:"help",work:"research"},
+ psychology:{analytical:4,creative:3,people:5,practical:2,env:"community",mot:"help",work:"people"},
+ emergency:{analytical:4,creative:2,people:5,practical:5,env:"field",mot:"protect",work:"active"},
+ architecture:{analytical:4,creative:5,people:2,practical:4,env:"workshop",mot:"create",work:"creative"},
+ woodwork:{analytical:3,creative:4,people:2,practical:5,env:"workshop",mot:"create",work:"handsOn"},
+ plumbing:{analytical:3,creative:2,people:2,practical:5,env:"workshop",mot:"solve",work:"handsOn"},
+ automotive:{analytical:4,creative:2,people:2,practical:5,env:"workshop",mot:"solve",work:"handsOn"},
+ aviation:{analytical:5,creative:3,people:3,practical:5,env:"field",mot:"discover",work:"handsOn"},
+ maritime:{analytical:4,creative:2,people:3,practical:5,env:"field",mot:"discover",work:"team"},
+
+ research:{analytical:5,creative:2,people:2,practical:2,env:"technology",mot:"discover",work:"research"},
+ languages:{analytical:3,creative:4,people:4,practical:2,env:"school",mot:"communicate",work:"people"},
+ teaching:{analytical:3,creative:3,people:5,practical:3,env:"school",mot:"help",work:"people"},
+ helping:{analytical:3,creative:2,people:5,practical:3,env:"community",mot:"help",work:"people"},
+ counselling:{analytical:4,creative:3,people:5,practical:2,env:"community",mot:"help",work:"people"},
+ leadership:{analytical:4,creative:3,people:5,practical:4,env:"community",mot:"lead",work:"leadership"},
+ business:{analytical:4,creative:4,people:4,practical:3,env:"office",mot:"business",work:"leadership"},
+ law:{analytical:5,creative:3,people:4,practical:2,env:"court",mot:"protect",work:"leadership"},
+ debate:{analytical:4,creative:4,people:5,practical:2,env:"court",mot:"communicate",work:"people"},
+ agriculture:{analytical:4,creative:2,people:3,practical:5,env:"farm",mot:"discover",work:"handsOn"},
+ animals:{analytical:4,creative:2,people:3,practical:5,env:"field",mot:"help",work:"handsOn"},
+ environment:{analytical:4,creative:3,people:2,practical:4,env:"field",mot:"protect",work:"handsOn"},
+ tourism:{analytical:3,creative:4,people:5,practical:3,env:"travel",mot:"discover",work:"people"},
+ food:{analytical:3,creative:4,people:3,practical:5,env:"workshop",mot:"create",work:"handsOn"},
+ community:{analytical:3,creative:2,people:5,practical:4,env:"community",mot:"help",work:"team"},
+ journalism:{analytical:4,creative:5,people:5,practical:2,env:"media",mot:"communicate",work:"people"},
+ broadcasting:{analytical:3,creative:5,people:5,practical:2,env:"media",mot:"communicate",work:"people"},
+ governance:{analytical:4,creative:3,people:5,practical:3,env:"community",mot:"lead",work:"leadership"},
+ economics:{analytical:5,creative:2,people:3,practical:2,env:"office",mot:"solve",work:"research"},
+ finance:{analytical:5,creative:2,people:3,practical:2,env:"office",mot:"solve",work:"research"},
+ marketing:{analytical:4,creative:5,people:5,practical:2,env:"office",mot:"business",work:"people"},
+ advocacy:{analytical:4,creative:3,people:5,practical:3,env:"community",mot:"protect",work:"people"},
+ publicservice:{analytical:4,creative:2,people:5,practical:4,env:"community",mot:"help",work:"team"},
+ hospitality:{analytical:3,creative:4,people:5,practical:4,env:"travel",mot:"help",work:"people"},
+ events:{analytical:4,creative:4,people:5,practical:4,env:"travel",mot:"organise",work:"team"},
+ entrepreneurship:{analytical:4,creative:5,people:5,practical:4,env:"office",mot:"business",work:"leadership"},
+
+ visual:{analytical:3,creative:5,people:2,practical:3,env:"studio",mot:"create",work:"creative"},
+ design:{analytical:4,creative:5,people:2,practical:3,env:"studio",mot:"create",work:"creative"},
+ fashion:{analytical:3,creative:5,people:3,practical:4,env:"studio",mot:"create",work:"creative"},
+ music:{analytical:3,creative:5,people:4,practical:3,env:"studio",mot:"create",work:"creative"},
+ acting:{analytical:3,creative:5,people:5,practical:3,env:"studio",mot:"communicate",work:"people"},
+ dance:{analytical:3,creative:5,people:4,practical:5,env:"sports",mot:"compete",work:"active"},
+ film:{analytical:3,creative:5,people:4,practical:3,env:"media",mot:"create",work:"creative"},
+ photo:{analytical:3,creative:5,people:3,practical:3,env:"studio",mot:"create",work:"creative"},
+ writing:{analytical:4,creative:5,people:3,practical:2,env:"media",mot:"communicate",work:"independent"},
+ sports:{analytical:3,creative:2,people:4,practical:5,env:"sports",mot:"compete",work:"active"},
+ football:{analytical:3,creative:2,people:5,practical:5,env:"sports",mot:"compete",work:"active"},
+ athletics:{analytical:3,creative:2,people:3,practical:5,env:"sports",mot:"compete",work:"active"},
+ coaching:{analytical:4,creative:3,people:5,practical:5,env:"sports",mot:"compete",work:"active"},
+ games:{analytical:4,creative:4,people:3,practical:2,env:"technology",mot:"compete",work:"independent"},
+ media:{analytical:3,creative:5,people:5,practical:2,env:"media",mot:"communicate",work:"creative"},
+ animation:{analytical:4,creative:5,people:2,practical:2,env:"studio",mot:"create",work:"creative"},
+ crafts:{analytical:3,creative:5,people:3,practical:5,env:"studio",mot:"create",work:"handsOn"},
+ beauty:{analytical:3,creative:5,people:5,practical:4,env:"studio",mot:"create",work:"people"},
+ fashionbusiness:{analytical:4,creative:5,people:5,practical:3,env:"office",mot:"business",work:"leadership"},
+
+ security:{analytical:4,creative:2,people:5,practical:5,env:"field",mot:"protect",work:"team"},
+ policing:{analytical:5,creative:2,people:5,practical:5,env:"field",mot:"protect",work:"team"},
+ defence:{analytical:4,creative:2,people:5,practical:5,env:"field",mot:"protect",work:"team"},
+ wildlife:{analytical:4,creative:2,people:3,practical:5,env:"field",mot:"protect",work:"handsOn"},
+ forestry:{analytical:4,creative:2,people:2,practical:5,env:"field",mot:"protect",work:"handsOn"},
+ marine:{analytical:4,creative:2,people:3,practical:5,env:"field",mot:"discover",work:"handsOn"},
+
+  // Newly introduced interests — fully connected to the dynamic assessment.
+  chemistry:{analytical:5,creative:2,people:2,practical:3,env:"technology",mot:"discover",work:"research"},
+  physics:{analytical:5,creative:3,people:2,practical:4,env:"technology",mot:"solve",work:"research"},
+  laboratory:{analytical:5,creative:2,people:3,practical:4,env:"technology",mot:"discover",work:"handsOn"},
+  geology:{analytical:5,creative:2,people:2,practical:5,env:"field",mot:"discover",work:"handsOn"},
+  climate:{analytical:5,creative:3,people:2,practical:4,env:"field",mot:"protect",work:"research"},
+  renewable:{analytical:5,creative:4,people:2,practical:5,env:"workshop",mot:"innovate",work:"handsOn"},
+  solar:{analytical:5,creative:3,people:2,practical:5,env:"field",mot:"innovate",work:"handsOn"},
+  medtech:{analytical:5,creative:3,people:4,practical:4,env:"hospital",mot:"innovate",work:"research"},
+  nutrition:{analytical:4,creative:3,people:4,practical:4,env:"hospital",mot:"help",work:"research"},
+  watertech:{analytical:5,creative:3,people:2,practical:5,env:"field",mot:"solve",work:"handsOn"},
+  banking:{analytical:5,creative:3,people:4,practical:3,env:"office",mot:"business",work:"people"},
+  customerservice:{analytical:3,creative:3,people:5,practical:3,env:"office",mot:"help",work:"people"},
+  sociology:{analytical:4,creative:3,people:5,practical:3,env:"community",mot:"discover",work:"people"},
+  historyinterest:{analytical:4,creative:4,people:4,practical:2,env:"school",mot:"discover",work:"research"},
+  culture:{analytical:3,creative:5,people:5,practical:2,env:"community",mot:"communicate",work:"people"},
+  publicadmin:{analytical:4,creative:3,people:5,practical:3,env:"office",mot:"lead",work:"leadership"},
+  diplomacy:{analytical:5,creative:4,people:5,practical:2,env:"office",mot:"communicate",work:"people"},
+  international:{analytical:4,creative:4,people:5,practical:2,env:"office",mot:"communicate",work:"people"},
+  humanbehaviour:{analytical:4,creative:3,people:5,practical:2,env:"community",mot:"discover",work:"people"},
+  contentcreation:{analytical:3,creative:5,people:5,practical:3,env:"media",mot:"create",work:"creative"},
+  journalism:{analytical:4,creative:5,people:5,practical:2,env:"media",mot:"communicate",work:"people"},
+  broadcasting:{analytical:3,creative:5,people:5,practical:2,env:"media",mot:"communicate",work:"people"},
+  eventproduction:{analytical:4,creative:5,people:5,practical:4,env:"media",mot:"create",work:"team"},
+  interiordesign:{analytical:4,creative:5,people:3,practical:4,env:"studio",mot:"create",work:"creative"},
+  culinaryarts:{analytical:3,creative:5,people:4,practical:5,env:"workshop",mot:"create",work:"handsOn"},
+  graphicdesign:{analytical:4,creative:5,people:3,practical:3,env:"studio",mot:"create",work:"creative"},
+  drawing:{analytical:3,creative:5,people:2,practical:4,env:"studio",mot:"create",work:"creative"},
+  painting:{analytical:3,creative:5,people:2,practical:4,env:"studio",mot:"create",work:"creative"},
+  sculpture:{analytical:3,creative:5,people:2,practical:5,env:"studio",mot:"create",work:"handsOn"},
+  creativewriting:{analytical:4,creative:5,people:4,practical:2,env:"media",mot:"create",work:"independent"},
+  poetry:{analytical:3,creative:5,people:4,practical:2,env:"studio",mot:"create",work:"creative"},
+  instrumental:{analytical:4,creative:5,people:3,practical:4,env:"studio",mot:"create",work:"creative"},
+  theatre:{analytical:3,creative:5,people:5,practical:4,env:"studio",mot:"communicate",work:"people"},
+  podcasting:{analytical:3,creative:5,people:5,practical:2,env:"media",mot:"communicate",work:"creative"},
+  swimming:{analytical:3,creative:2,people:3,practical:5,env:"sports",mot:"compete",work:"active"},
+  basketball:{analytical:4,creative:3,people:5,practical:5,env:"sports",mot:"compete",work:"active"},
+  volleyball:{analytical:4,creative:3,people:5,practical:5,env:"sports",mot:"compete",work:"active"},
+  fitness:{analytical:4,creative:2,people:4,practical:5,env:"sports",mot:"compete",work:"active"}
+};
+
+function syncAssessmentFromInterests(){
+  const chosen=selected.interest||[];
+  if(!chosen.length)return;
+
+  const totals={analytical:0,creative:0,people:0,practical:0};
+  const counts={analytical:0,creative:0,people:0,practical:0};
+  const styleScores={env:{},mot:{},work:{}};
+
+  chosen.forEach(tag=>{
+    const p=interestAssessmentProfile[tag];
+    if(!p)return;
+    ["analytical","creative","people","practical"].forEach(k=>{
+      if(p[k]){totals[k]+=p[k];counts[k]++;}
+    });
+    [["env",p.env],["mot",p.mot],["work",p.work]].forEach(([group,val])=>{
+      if(val)styleScores[group][val]=(styleScores[group][val]||0)+1;
+    });
+  });
+
+  Object.keys(totals).forEach(k=>{
+    if(counts[k])selected.rating[k]=Math.max(1,Math.min(5,Math.round(totals[k]/counts[k])));
+  });
+
+  const strongest=(group)=>{
+    const entries=Object.entries(styleScores[group]||{});
+    return entries.sort((a,b)=>b[1]-a[1])[0]?.[0]||"";
+  };
+
+  const env=strongest("env"),mot=strongest("mot"),work=strongest("work");
+  if(env)document.getElementById("environment").value=env;
+  if(mot)document.getElementById("motivation").value=mot;
+  if(work)document.getElementById("workPreference").value=work;
+
+  const labels={
+    analytical:"Thinking & Problem Solving",
+    creative:"Creativity & Expression",
+    people:"Communication & People Skills",
+    practical:"Practical & Physical Skills"
+  };
+
+  Object.entries(selected.rating).forEach(([key,value])=>{
+    const row=[...document.querySelectorAll("#strengths .rating-row")]
+      .find(r=>r.querySelector("span")?.textContent.trim()===labels[key]);
+    if(row)row.querySelectorAll(".rating-btn").forEach(b=>{
+      b.classList.toggle("selected",Number(b.textContent)===value);
+    });
+  });
+
+  updateProgress();
+}
 
 const keywordAliases={
   computer:["computer","computers","coding","code","programming","technology","software","digital","ict"],
@@ -510,16 +827,16 @@ const keywordAliases={
   helping:["help","helping","people","community","care","service"],
   leadership:["lead","leader","leadership","manage","management","organize","organisation"],
   law:["law","legal","justice","court","debate","rights"],
-  agriculture:["agriculture","farming","farm","crops","livestock"],
-  animals:["animal","animals","veterinary","vet"],
-  environment:["environment","nature","conservation","climate","outdoors","field"],
+  agriculture:[,"farming","farm","crops","livestock"],
+  animals:["animal",,"veterinary","vet"],
+  environment:[,"nature","conservation","climate","outdoors","field"],
   sports:["sport","sports","football","athletics","fitness","competition","competitive"],
   coaching:["coach","coaching","training","trainer"],
   food:["food","cooking","chef","culinary","hospitality"],
   robotics:["robot","robotics","automation"], ai:["ai","artificial","intelligence"], biology:["biology","health","medical","medicine"],
   engineering:["engineering","innovation","invent"], fashion:["fashion","textile","clothes"], counselling:["counselling","counseling","listening","psychology"],
   debate:["debate","public","speaking","argument"], tourism:["tourism","travel","hospitality"], community:["community","volunteer","service"],
-  games:["games","gaming","esports"], media:["media","social","content","video","broadcast"], organisation:["organise","organize","organisation","organization"]
+  games:["games","gaming","esports"], media:["media","social","content","video","broadcast"], organisation:["organise","organize","organisation","organization"], security:["security","safety","public safety","protection"], policing:["police","policing","law enforcement","officer"], defence:["defence","defense","military","kdf","armed forces"], publicservice:["public service","community safety","service"], fitness:["fitness","physical training","training"], investigation:["investigate","investigation","facts","evidence"]
 };
 
 function tokens(){
@@ -581,11 +898,11 @@ function generate(){
     if(env==="hospital"&&c[3].some(x=>["science","helping","empathy","health"].includes(x)))score+=10;
     if(env==="school"&&c[3].some(x=>["teaching","helping","communication"].includes(x)))score+=9;
     if(env==="media"&&c[3].some(x=>["media","film","photo","writing","communication"].includes(x)))score+=9;
-    if(env==="farm"&&c[3].some(x=>["agriculture","animals","environment"].includes(x)))score+=10;
-    if(env==="travel"&&c[3].some(x=>["tourism","communication","environment","business"].includes(x)))score+=8;
+    if(env==="farm"&&c[3].some(x=>[,,].includes(x)))score+=10;
+    if(env==="travel"&&c[3].some(x=>["tourism","communication",,"business"].includes(x)))score+=8;
     if(env==="court"&&c[3].some(x=>["law","communication","writing"].includes(x)))score+=10;
     if(mot==="communicate"&&c[3].some(x=>["communication","writing","languages","media"].includes(x)))score+=7;
-    if(mot==="protect"&&c[3].some(x=>["environment","helping","law","animals"].includes(x)))score+=7;
+    if(mot==="protect"&&c[3].some(x=>[,"helping","law",].includes(x)))score+=7;
     if(mot==="organise"&&c[3].some(x=>["leadership","business","organisation"].includes(x)))score+=7;
     if(mot==="innovate"&&c[1]==="STEM")score+=8;
 
@@ -618,9 +935,50 @@ function generate(){
    return {data:c,score,matched};
  }).sort((a,b)=>b.score-a.score);
  const paths=Object.entries(pathScore).sort((a,b)=>b[1]-a[1]);
+
+ // EXPLICIT INTEREST PATHWAY LOCK:
+ // "What Do You Enjoy?" pathway interests take priority over secondary
+ // scoring signals, ratings, activities and career matches.
+ const pickedInterests=new Set(selected.interest||[]);
+ const STEM_INTERESTS=new Set([
+   "agriculture","animals","environment","tech","programming","robotics","ai","math","science","biology",
+   "machines","building","electronics","engineering","cybersecurity","webdev","data","astronomy",
+   "chemistry","physics","laboratory","geology","climate","renewable","solar","medtech","nutrition",
+   "watertech","healthcare","pharmacy","emergency","architecture","woodwork","plumbing","automotive",
+   "wildlife","forestry","marine","aviation","maritime"
+ ]);
+ const SPORTS_INTERESTS=new Set([
+   "sports","football","basketball","volleyball","athletics","swimming","coaching","fitness"
+ ]);
+ const SOCIAL_INTERESTS=new Set([
+   "research","languages","teaching","helping","counselling","leadership","business","law","debate",
+   "tourism","food","community","journalism","broadcasting","governance","economics","sociology",
+   "historyinterest","culture","publicadmin","diplomacy","international","banking","customerservice",
+   "humanbehaviour","finance","marketing","advocacy","publicservice","hospitality","events","psychology",
+   "entrepreneurship","security","policing","defence"
+ ]);
+
+ const hasSportsInterest=[...pickedInterests].some(x=>SPORTS_INTERESTS.has(x));
+ const hasStemInterest=[...pickedInterests].some(x=>STEM_INTERESTS.has(x));
+ const hasSocialInterest=[...pickedInterests].some(x=>SOCIAL_INTERESTS.has(x));
+
+ // Explicit pathway priority:
+ // Sports -> Arts & Sports Science; STEM -> STEM; Social -> Social Sciences.
+ // Sports is checked first because it is a direct Arts & Sports Science signal.
+ window.__explicitInterestPathway =
+   hasSportsInterest ? "Arts & Sports Science" :
+   hasStemInterest ? "STEM" :
+   hasSocialInterest ? "Social Sciences" :
+   null;
+
  window.__pathwayScores={...pathScore};
- bestPath=paths[0][0];
- renderPathways(paths); renderReport(paths); renderCareers(); renderSubjects(); renderCourses(); renderCombinations(); renderAlternatives(paths); renderAdvice(); renderPrintLists();
+ bestPath=window.__explicitInterestPathway || paths[0][0];
+
+ const orderedPaths=window.__explicitInterestPathway
+   ? [[window.__explicitInterestPathway,pathScore[window.__explicitInterestPathway]||0],
+      ...paths.filter(([p])=>p!==window.__explicitInterestPathway)]
+   : paths;
+ renderPathways(orderedPaths); renderReport(orderedPaths); renderCareers(); renderSubjects(); renderCourses(); renderCombinations(); renderAlternatives(orderedPaths); renderAdvice(); renderPrintLists();
 
  // Keep the generated report hidden until the learner sees the congratulations message.
  const resultsSection=document.getElementById("results");
@@ -839,7 +1197,7 @@ function careerPhotoQuery(name){
  if(/film|producer|camera|photograph/.test(n)) return "film,production,camera,studio";
  if(/athlete|football|athletics|sports/.test(n)) return "athlete,sports,stadium,training";
  if(/coach|fitness/.test(n)) return "sports,coach,training,fitness";
- if(/agric|farmer/.test(n)) return "farmer,agriculture,farm,crops";
+ if(/agric|farmer/.test(n)) return "farmer,,farm,crops";
  if(/environment|forestry|conservation|wildlife/.test(n)) return "environment,conservation,nature,field";
  if(/tourism|travel/.test(n)) return "tourism,travel,guide,hotel";
  if(/chef|culinary|baker|food/.test(n)) return "chef,cooking,kitchen,culinary";
@@ -912,12 +1270,12 @@ const officialCombinations=[
 ["ARTS & SPORTS SCIENCE","Arts","Music & Dance + Fine Arts + Biology","AS1012"],
 ["ARTS & SPORTS SCIENCE","Arts","Music & Dance + Fine Arts + Computer Studies","AS1013"],
 ["ARTS & SPORTS SCIENCE","Arts","Music & Dance + Theatre & Film + Business Studies","AS1014"],
-["ARTS & SPORTS SCIENCE","Sports","Sports & Recreation + Biology + Business Studies","AS2001"],
-["ARTS & SPORTS SCIENCE","Sports","Sports & Recreation + Biology + Computer Studies","AS2002"],
-["ARTS & SPORTS SCIENCE","Sports","Sports & Recreation + Business Studies + General Science","AS2003"],
-["ARTS & SPORTS SCIENCE","Sports","Sports & Recreation + Computer Studies + General Science","AS2004"],
-["ARTS & SPORTS SCIENCE","Sports","Sports & Recreation + Geography + History & Citizenship","AS2005"],
-["ARTS & SPORTS SCIENCE","Sports","Sports & Recreation + Biology + Physics","AS2006"],
+["ARTS & SPORTS SCIENCE","Sports","Sports and Recreation + Biology + Business Studies","AS2001"],
+["ARTS & SPORTS SCIENCE","Sports","Sports and Recreation + Biology + Computer Studies","AS2002"],
+["ARTS & SPORTS SCIENCE","Sports","Sports and Recreation + Business Studies + General Science","AS2003"],
+["ARTS & SPORTS SCIENCE","Sports","Sports and Recreation + Computer Studies + General Science","AS2004"],
+["ARTS & SPORTS SCIENCE","Sports","Sports and Recreation + Geography + History & Citizenship","AS2005"],
+["ARTS & SPORTS SCIENCE","Sports","Sports and Recreation + Biology + Physics","AS2006"],
 ["SOCIAL SCIENCES","Languages & Literature","Arabic + French + General Science","SS1014"],
 ["SOCIAL SCIENCES","Languages & Literature","German + Indigenous Language + Literature in English","SS1065"],
 ["SOCIAL SCIENCES","Languages & Literature","French + Geography + Literature in English","SS1042"],
@@ -983,7 +1341,7 @@ function pathwayMatchesSubject(pathway,subject){
   const n=normalizeSubject(subject);
   if(!n||isForbiddenCombinationSubject(n))return false;
   const map={
-    "STEM":["biology","chemistry","physics","general science","agriculture","computer studies","geography","building and construction","electricity","metal work","wood work","power mechanics","aviation","marine and fisheries","media technology","home science"],
+    "STEM":["biology","chemistry","physics","general science",,"computer studies","geography","building and construction","electricity","metal work","wood work","power mechanics","aviation","marine and fisheries","media technology","home science"],
     "SOCIAL SCIENCES":["business studies","geography","history and citizenship","literature in english","arabic","french","german","indigenous language","fasihi ya kiswahili","religious education"],
     "ARTS & SPORTS SCIENCE":["fine arts","music and dance","theatre and film","sports and recreation"]
   };
@@ -992,7 +1350,7 @@ function pathwayMatchesSubject(pathway,subject){
 function subjectPathways(subject){
   const n=normalizeSubject(subject);
   const map={
-    STEM:["biology","chemistry","physics","general science","agriculture","computer studies","geography","building and construction","electricity","metalwork","metal work","wood technology","wood work","power mechanics","aviation","marine and fisheries technology","media technology","home science"],
+    STEM:["biology","chemistry","physics","general science",,"computer studies","geography","building and construction","electricity","metalwork","metal work","wood technology","wood work","power mechanics","aviation","marine and fisheries technology","media technology","home science"],
     "SOCIAL SCIENCES":["business studies","geography","history and citizenship","literature in english","arabic","french","german","mandarin chinese","indigenous language","fasihi ya kiswahili","sign language","christian religious education","islamic religious education","hindu religious education"],
     "ARTS & SPORTS SCIENCE":["fine arts","music and dance","theatre and film","sports and recreation"]
   };
@@ -1065,24 +1423,73 @@ function rankedOfficialCombinations(){
   const preferred=(selected.subject||[]).map(subjectLabelByKey).filter(Boolean).filter(s=>!isForbiddenCombinationSubject(s));
   const tie=pathwayTieMode();
   const mainPath=tie?null:(String(bestPath).toUpperCase()==="SOCIAL SCIENCES"?"SOCIAL SCIENCES":String(bestPath).toUpperCase());
+  const topCareers=results.slice(0,12);
+  const sportsSignal=(selected.interest||[]).some(x=>["sports","football","athletics","coaching","basketball","volleyball","swimming","fitness"].includes(x)) || (selected.activity||[]).some(x=>["sports","football","athletics","coaching","basketball","volleyball","swimming","fitness"].includes(x));
 
   return officialCombinations.filter(isValidPathwayCombination).map(c=>{
-    const subs=comboSubjects(c),pathwayCounts=combinationPathwayProfile(c);
+    const subs=comboSubjects(c), pathwayCounts=combinationPathwayProfile(c);
     let score=0,matches=[];
+    const normalizedSubs=subs.map(normalizeSubject);
+
+    // 1) Favourite subjects — strongest direct learner preference signal.
     preferred.forEach(sel=>{
       const b=normalizeSubject(sel);
       const hit=subs.find(s=>normalizeSubject(s)===b||normalizeSubject(s).includes(b)||b.includes(normalizeSubject(s)));
-      if(hit&&!matches.includes(hit)){matches.push(hit);score+=25;}
+      if(hit&&!matches.includes(hit)){matches.push(hit);score+=38;}
     });
-    if(mainPath&&pathwayCounts[mainPath]>0)score+=20;
-    if(Object.values(pathwayCounts).every(n=>n===1))score+=15;
-    score+=subs.length*2;
-    const prepared=mainPath?prepareCombinationForPathway(c,mainPath):null;
-    if(prepared)score+=25;
-    return {data:c,score,matches,pathwayCounts,prepared};
+
+    // 2) Pathway fit — use the full assessment pathway result, not only selected subjects.
+    if(mainPath&&pathwayCounts[mainPath]>0)score+=32;
+    if(Object.values(pathwayCounts).every(n=>n===1))score+=10;
+
+    // 3) Career fit — merge the learner's top career recommendations into the combination.
+    // Higher-scoring careers contribute more. This is what makes combinations follow the
+    // learner's actual career direction instead of simply listing generic pathway options.
+    topCareers.forEach((r,idx)=>{
+      const cdata=r.data;
+      const weight=Math.max(1,13-idx);
+      const overlap=subs.filter(s=>cdata[4].some(cs=>{
+        const a=normalizeSubject(s),b=normalizeSubject(cs);
+        return a===b||a.includes(b)||b.includes(a);
+      })).length;
+      if(overlap)score += overlap*weight*2.2;
+      if(cdata[1]===c[0])score += weight*1.2;
+    });
+
+    // 4) Sports intelligence — when sport is explicitly selected, Sports and Recreation
+    // becomes a first-class driver instead of disappearing behind general Arts choices.
+    if(sportsSignal){
+      if(subs.some(s=>normalizeSubject(s)==="sports and recreation"))score+=70;
+      if(c[0]==="ARTS & SPORTS SCIENCE")score+=35;
+    }
+
+    // 5) Arts signals — favour combinations containing the learner's selected arts subjects.
+    const artsSignals=(selected.interest||[]).filter(x=>["visual","design","fashion","music","acting","dance","film","photo","media","animation","crafts","beauty","fashionbusiness"].includes(x));
+    if(artsSignals.length&&c[0]==="ARTS & SPORTS SCIENCE"){
+      score+=artsSignals.length*5;
+      if(subs.some(s=>["fine arts","music and dance","theatre and film"].includes(normalizeSubject(s))))score+=18;
+    }
+
+    // 6) Assessment dimensions: strengths + work style + motivation are merged indirectly
+    // through the careers they elevate, with a small explicit preference boost as a tie-breaker.
+    const env=document.getElementById("environment")?.value||"";
+    const mot=document.getElementById("motivation")?.value||"";
+    const wp=document.getElementById("workPreference")?.value||"";
+    if((env==="sports"||wp==="active"||mot==="compete") && subs.some(s=>normalizeSubject(s)==="sports and recreation"))score+=22;
+    if((env==="technology"||wp==="research"||mot==="solve"||mot==="innovate") && c[0]==="STEM")score+=10;
+    if((env==="community"||env==="court"||env==="office"||wp==="people"||wp==="leadership"||mot==="lead"||mot==="help") && c[0]==="SOCIAL SCIENCES")score+=10;
+    if((env==="studio"||wp==="creative"||mot==="create") && c[0]==="ARTS & SPORTS SCIENCE")score+=10;
+
+    // Security/public-service signals should make security-oriented careers and compatible
+    // Social Sciences combinations rise naturally.
+    const securitySignal=(selected.interest||[]).some(x=>["security","policing","defence"].includes(x)) ||
+      (selected.activity||[]).some(x=>["publicservice","law","leadership","sports","coaching"].includes(x)) &&
+      (mot==="protect"||mot==="lead");
+    if(securitySignal && c[0]==="SOCIAL SCIENCES")score+=28;
+
+    return {data:c,score,matches,pathwayCounts,prepared:null};
   }).sort((a,b)=>b.score-a.score||String(a.data[3]).localeCompare(String(b.data[3])));
 }
-
 function buildIntelligentCombinationRecommendations(){
   const tie=pathwayTieMode();
   const path=String(bestPath||"").toUpperCase()==="SOCIAL SCIENCES"?"SOCIAL SCIENCES":String(bestPath||"").toUpperCase();
@@ -1108,8 +1515,63 @@ function buildIntelligentCombinationRecommendations(){
     }
   }
 
-  const ranked=rankedOfficialCombinations().filter(x=>x.prepared);
-  return ranked.length?ranked:rankedOfficialCombinations();
+  const ranked=rankedOfficialCombinations();
+
+  // SPORTS OVERRIDE: if the learner explicitly selected football, athletics,
+  // basketball, volleyball, swimming, sports or coaching, official Sports
+  // combinations must remain eligible and be ranked ahead of generic Arts
+  // combinations. The official combinations themselves are never invented
+  // or altered.
+  const sportsSignal = (selected.interest||[]).some(x=>["sports","football","athletics","coaching","basketball","volleyball","swimming","fitness"].includes(x)) ||
+    (selected.activity||[]).some(x=>["sports","football","athletics","coaching","basketball","volleyball","swimming","fitness"].includes(x));
+  if(sportsSignal){
+    const existing=new Set(ranked.map(x=>x.data[3]));
+    const sportsOfficial=officialCombinations
+      .filter(c=>c[1]==="Sports" && comboSubjects(c).some(s=>normalizeSubject(s)==="sports and recreation"));
+    sportsOfficial.forEach(c=>{
+      if(!existing.has(c[3])){
+        ranked.push({data:c,score:1000,matches:["Sports and Recreation"],pathwayCounts:combinationPathwayProfile(c),prepared:null});
+      }
+    });
+    ranked.sort((a,b)=>b.score-a.score||String(a.data[3]).localeCompare(String(b.data[3])));
+  }
+
+  // SPORTS EXCEPTION:
+  // When a learner explicitly selects a sports interest, official Sports
+  // combinations containing Sports and Recreation must remain visible.
+  // The generic 2+1 pathway rule must not remove them.
+  const strictPath = path;
+  const strictRanked = strictPath
+    ? ranked.filter(x=>{
+        const pc=x.pathwayCounts||combinationPathwayProfile(x.data);
+
+        const isSportsCombination =
+          x.data &&
+          x.data[1]==="Sports" &&
+          comboSubjects(x.data).some(s=>normalizeSubject(s)==="sports and recreation");
+
+        if(sportsSignal && isSportsCombination) return true;
+
+        const target=pc[strictPath]||0;
+        const otherCount=(Object.entries(pc)
+          .filter(([p])=>p!==strictPath)
+          .reduce((sum,[,n])=>sum+(n||0),0));
+
+        return target===2 && otherCount===1;
+      })
+    : ranked;
+
+  if(strictPath){
+    ranked.splice(0, ranked.length, ...strictRanked);
+  }
+  // Prepare every ranked official combination around the strongest pathway so the
+  // displayed order reflects the learner, while preserving the official subjects/codes.
+  const prepared=ranked.map(x=>{
+    if(!path)return x;
+    const p=prepareCombinationForPathway(x.data,path);
+    return p?{...x,prepared:p}:x;
+  });
+  return prepared;
 }
 
 function combinationSubjectHTML(subject,index,highlightIndex){
@@ -1223,5 +1685,143 @@ function resetAll(){
 }
 updateProgress();
 </script>
+
+<script>
+/* FULL PAGE ENGLISH <-> KISWAHILI TRANSLATION */
+(function(){
+  const SW = {
+    "Learner Career Guidance & Pathway Assessment":"Mwongozo wa Kazi na Tathmini ya Njia kwa Mwanafunzi",
+    "Print":"Chapisha","Discover Your Career Direction":"Gundua Mwelekeo Wako wa Kazi",
+    "Answer the questions honestly. The system combines interests, strengths, favourite subjects and preferred activities to estimate the most suitable pathway, track and career areas.":"Jibu maswali kwa uaminifu. Mfumo unachanganya mapendeleo, uwezo, masomo unayopenda na shughuli unazopendelea ili kukadiria njia, mkondo na maeneo ya kazi yanayokufaa.",
+    "Guidance note:":"Maelezo ya mwongozo:","Learner Information":"Taarifa za Mwanafunzi",
+    "What Do You Enjoy?":"Unapenda Kufanya Nini?","What Are You Naturally Good At?":"Una Uwezo Gani Kiasili?",
+    "Activities You Prefer":"Shughuli Unazopendelea","Subjects You Like":"Masomo Unayopenda","Work Style":"Mtindo wa Kazi",
+    "Name":"Jina","Learner name":"Jina la mwanafunzi","Grade":"Darasa","Select grade":"Chagua darasa",
+    "School":"Shule","School name":"Jina la shule","Describe freely":"Eleza kwa uhuru",
+    "Select as many as apply":"Chagua zote zinazokuhusu","Select up to":"Chagua hadi",
+    "Where would you enjoy working?":"Ungependa kufanya kazi wapi?","What motivates you most?":"Nini kinakuhamasisha zaidi?",
+    "How do you prefer to work?":"Unapendelea Kufanya Kazi Vipi?",
+    "Recommended Grade 10 Subject Combinations":"Mchanganyiko wa Masomo ya Darasa la 10 Unaopendekezwa",
+    "Recommended Subject Areas":"Maeneo ya Masomo Yanayopendekezwa","Related Course / Training Areas":"Maeneo ya Kozi / Mafunzo Yanayohusiana",
+    "Career Guidance Report":"Ripoti ya Mwongozo wa Kazi","Pathway Compatibility":"Ulinganifu wa Njia",
+    "Recommended Direction":"Mwelekeo Unaopendekezwa","Recommended Careers":"Kazi Zinazopendekezwa",
+    "Recommended Careers":"Kazi Zinazopendekezwa","Search careers...":"Tafuta kazi...",
+    "Match scores are guidance estimates based on your answers, not admission probabilities or official placement scores.":"Alama za ulinganifu ni makadirio ya mwongozo kulingana na majibu yako; si uwezekano wa kudahiliwa wala alama rasmi za upangaji.",
+    "Pathway":"Njia","Track":"Mkondo","Strongest overall match.":"Ulinganifu wa juu zaidi kwa jumla.",
+    "Alternative pathway worth exploring.":"Njia mbadala inayofaa kuchunguzwa.",
+    "Save Report":"Hifadhi Ripoti","Clear":"Futa","Generate My Career Report":"Tengeneza Ripoti Yangu ya Kazi",
+    "Your interests, strengths, activities, favourite subjects, work style, motivation, pathway and careers are merged to rank these combinations.":"Mapendeleo yako, uwezo, shughuli, masomo unayopenda, mtindo wa kazi, hamasa, njia na kazi zinachanganywa ili kupanga mchanganyiko huu.",
+    "The navigator strictly recommends official Grade 10 combinations around the learner's strongest pathway: exactly two subjects must come from the strongest pathway, plus exactly one subject from one other pathway. Balanced 1+1+1 combinations are excluded when one pathway is clearly strongest.":"Kielekezi kinapendekeza kwa akili mchanganyiko wa masomo ya Darasa la 10 kwa kutumia njia yenye nguvu zaidi, masomo anayopenda mwanafunzi na uwiano wa njia.",
+    "Code":"Msimbo","Combination":"Mchanganyiko","Score":"Alama","Reason":"Sababu",
+    "Recommended combination":"Mchanganyiko unaopendekezwa","Why this is recommended":"Kwa nini huu mchanganyiko unapendekezwa",
+    "Strongest pathway":"Njia yenye nguvu zaidi","View":"Tazama","Share":"Shiriki",
+    "Print Recommended Careers":"Chapisha Kazi Zinazopendekezwa","Share Careers on WhatsApp":"Shiriki Kazi kwenye WhatsApp",
+    "Print Recommended Combinations":"Chapisha Mchanganyiko Unaopendekezwa","Share Combinations on WhatsApp":"Shiriki Mchanganyiko kwenye WhatsApp",
+    "Tip: rate all four strength areas honestly; each combines several related skills while preserving their contribution to the pathway report.":"Kidokezo: pima maeneo yote manne ya uwezo kwa uaminifu; kila eneo linajumuisha ujuzi unaohusiana na linachangia ripoti ya njia.",
+    "Please select up to 3 subjects.":"Tafadhali chagua hadi masomo 3.",
+    "Please select up to 6 choices.":"Tafadhali chagua hadi chaguo 6.",
+    "Please generate the career report first.":"Tafadhali tengeneza kwanza ripoti ya kazi.",
+    "STEM":"STEM","Social Sciences":"Sayansi za Jamii","Arts & Sports Science":"Sanaa na Sayansi ya Michezo",
+    "Sports":"Michezo","Arts":"Sanaa","Humanities & Business Studies":"Masomo ya Binadamu na Biashara",
+    "Languages & Literature":"Lugha na Fasihi","Technical & Engineering":"Ufundi na Uhandisi",
+    "Pure Sciences":"Sayansi Safi","Applied Sciences":"Sayansi Tumizi","Careers & Technology Studies":"Kazi na Teknolojia",
+    "Sports and Recreation":"Michezo na Burudani","Music and Dance":"Muziki na Ngoma","Theatre and Film":"Tamthilia na Filamu",
+    "Fine Arts":"Sanaa Nzuri","Literature in English":"Fasihi ya Kiingereza","Business Studies":"Masomo ya Biashara",
+    "History and Citizenship":"Historia na Uraia","Geography":"Jiografia","Biology":"Biolojia","Chemistry":"Kemia",
+    "Physics":"Fizikia","General Science":"Sayansi ya Jumla","Agriculture":"Kilimo","Computer Studies":"Masomo ya Kompyuta",
+    "Home Science":"Sayansi ya Nyumbani","Media Technology":"Teknolojia ya Vyombo vya Habari",
+    "English":"Kiingereza","Kiswahili":"Kiswahili","Mathematics":"Hisabati",
+    "Learner":"Mwanafunzi","Generated as career guidance; confirm current requirements before making a final subject or career decision.":"Imetengenezwa kwa madhumuni ya mwongozo wa kazi; hakikisha mahitaji ya sasa kabla ya kufanya uamuzi wa mwisho wa masomo au kazi.",
+    "The recommendations are guidance only. Confirm current subject availability and official requirements in the Grade 10 Selection System.":"Mapendekezo haya ni ya mwongozo pekee. Hakikisha upatikanaji wa masomo na mahitaji rasmi ya sasa katika Mfumo wa Uchaguzi wa Darasa la 10.",
+    "Real career photograph • Explore the skills, subjects and courses recommended for this career.":"Picha halisi ya kazi • Chunguza ujuzi, masomo na kozi zinazopendekezwa kwa kazi hii.",
+    "Close":"Funga","General pathway match":"Ulinganifu wa jumla wa njia"
+  };
+
+  function rememberAndTranslate(root){
+    const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+    const nodes=[];
+    while(walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(n=>{
+      if(!n.__originalText) n.__originalText=n.nodeValue;
+      const raw=n.__originalText, t=raw.trim();
+      if(!t) return;
+      if(window.currentLanguage==="sw" && SW[t]){
+        n.nodeValue=raw.replace(t,SW[t]);
+      }else if(window.currentLanguage!=="sw"){
+        n.nodeValue=raw;
+      }
+    });
+    root.querySelectorAll("input,textarea,select,button").forEach(el=>{
+      ["placeholder","title","aria-label"].forEach(a=>{
+        const key="__orig_"+a;
+        if(el.dataset[key]===undefined && el.hasAttribute(a)) el.dataset[key]=el.getAttribute(a);
+        if(window.currentLanguage==="sw" && el.dataset[key] && SW[el.dataset[key]]) el.setAttribute(a,SW[el.dataset[key]]);
+        if(window.currentLanguage!=="sw" && el.dataset[key]!==undefined) el.setAttribute(a,el.dataset[key]);
+      });
+    });
+    document.documentElement.lang=window.currentLanguage==="sw"?"sw":"en";
+    if(window.currentLanguage==="sw") document.title="Kielekezi cha Njia za Kazi cha CBC";
+  }
+
+  window.translateEntirePage=function(){
+    rememberAndTranslate(document.body);
+    // Re-rendered cards and result text can be translated again safely.
+    setTimeout(()=>rememberAndTranslate(document.body),20);
+  };
+
+  const observer=new MutationObserver(muts=>{
+    if(window.currentLanguage!=="sw") return;
+    muts.forEach(m=>m.addedNodes.forEach(n=>{
+      if(n.nodeType===1) rememberAndTranslate(n);
+    }));
+  });
+  observer.observe(document.body,{childList:true,subtree:true});
+})();
+</script>
+
+
+<script>
+(function(){
+  function syncStrictNote(){
+    const n=document.getElementById("strictComboNote");
+    if(!n)return;
+    n.innerHTML=window.currentLanguage==="sw"
+      ? "<strong>Sheria ya mchanganyiko:</strong> Masomo 2 kutoka njia yenye nguvu zaidi + somo 1 kutoka njia nyingine moja. Ni muundo huu wa 2+1 pekee unaoonyeshwa wakati njia moja ina nguvu zaidi."
+      : "<strong>Combination rule:</strong> 2 subjects from the strongest pathway + 1 subject from one other pathway. Only this 2+1 structure is shown when one pathway is strongest.";
+  }
+  window.syncStrictComboNote=syncStrictNote;
+  const oldRender=window.renderCombinations;
+  if(typeof oldRender==="function"){
+    window.renderCombinations=function(){oldRender.apply(this,arguments);setTimeout(syncStrictNote,0);}
+  }
+  setTimeout(syncStrictNote,100);
+})();
+</script>
+
+
+<script>
+/* Correct pathway classification: these interests are STEM signals. */
+(function(){
+  const STEM_INTERESTS = new Set(["agriculture","animals","environment"]);
+  const oldGenerate = window.generate;
+  if(typeof oldGenerate==="function" && !window.__stemInterestPatch){
+    window.__stemInterestPatch = true;
+    window.generate = function(){
+      const result = oldGenerate.apply(this, arguments);
+      try{
+        const picked = Array.isArray(window.selected && window.selected.interest)
+          ? window.selected.interest : [];
+        if(picked.some(x=>STEM_INTERESTS.has(String(x)))){
+          window.__pathwayScores = window.__pathwayScores || {};
+          window.__pathwayScores.STEM =
+            (window.__pathwayScores.STEM || 0) + 28;
+        }
+      }catch(e){}
+      return result;
+    };
+  }
+})();
+</script>
+
 </body>
 </html>
