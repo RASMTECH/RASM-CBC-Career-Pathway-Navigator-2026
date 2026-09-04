@@ -79,7 +79,7 @@ footer{color:#64748b}
   @page{size:A4;margin:14mm}
   html,body{background:#fff!important;color:#111!important}
   body{font-family:Arial,Helvetica,sans-serif}
-  header,#assessment,.no-print,footer,#results>.report-head,#results>.card:not(#printCareersCard):not(#printCombinationsCard){display:none!important}
+  header,#assessment,.hero,.no-print,footer,#results>.report-head,#results>.card:not(#printCareersCard):not(#printCombinationsCard){display:none!important}
   .container,#results{display:block!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important}
   #printCareersCard,#printCombinationsCard{display:none!important;border:0!important;box-shadow:none!important;background:#fff!important;margin:0!important;padding:0!important}
   body.print-careers #printCareersCard{display:block!important}
@@ -172,10 +172,11 @@ label{color:#334155}input,select,textarea{border:2px solid #dbe4f0;background:#f
 .info{background:#fff;border:2px solid #e2e8f0}.info:nth-child(odd){border-left:5px solid #2563eb}.info:nth-child(even){border-left:5px solid #9333ea}
 .actor-modal{background:rgba(23,37,84,.78)}.actor-modal-card{border:3px solid #818cf8}.actor-modal-head{background:#172554;border-bottom:5px solid #f59e0b}.actor-image-wrap{background:#eef2ff}.actor-close{background:#db2777}.actor-modal-foot{background:#fff}
 footer{background:#172554;color:#dbeafe;margin-top:25px;border-top:4px solid #f59e0b}
-@media(max-width:800px){.hero h2{font-size:25px}.card{border-top-width:4px}}
-.career-photo{margin:10px 0 12px;border-radius:14px;overflow:hidden;background:#eef2f7;aspect-ratio:16/9;border:1px solid rgba(0,0,0,.08)}
-.career-photo img{width:100%;height:100%;display:block;object-fit:cover}
+@media(max-width:800px){.hero h2{font-size:25px}.card{border-top-width:4px}.career-photo,.career-photo img{min-height:190px}}
+.career-photo{margin:10px 0 12px;border-radius:14px;overflow:hidden;background:#eef2f7;aspect-ratio:4/3;min-height:220px;border:1px solid rgba(0,0,0,.08);box-shadow:0 6px 16px rgba(15,23,42,.08)}
+.career-photo img{width:100%;height:100%;min-height:220px;display:block;object-fit:cover}
 </style>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <header><div class="head"><div class="brand"><div class="logo">🎓</div><div><h1>CBC Career Pathway Navigator</h1><small>Learner Career Guidance & Pathway Assessment</small></div></div><button class="btn secondary no-print" onclick="window.print()">🖨 Print</button></div></header>
@@ -620,8 +621,39 @@ function generate(){
  window.__pathwayScores={...pathScore};
  bestPath=paths[0][0];
  renderPathways(paths); renderReport(paths); renderCareers(); renderSubjects(); renderCourses(); renderCombinations(); renderAlternatives(paths); renderAdvice(); renderPrintLists();
- document.getElementById("results").style.display="block";
- document.getElementById("results").scrollIntoView({behavior:"smooth"});
+
+ // Keep the generated report hidden until the learner sees the congratulations message.
+ const resultsSection=document.getElementById("results");
+ resultsSection.style.display="none";
+
+ const learnerName=(document.getElementById("name").value||"Learner").trim();
+
+ if(typeof Swal!=="undefined"){
+   Swal.fire({
+     icon:"success",
+     title:"🎉 Congratulations, "+learnerName+"!",
+     html:
+       "<div style='font-size:16px;line-height:1.7'>" +
+       "<b>Your career assessment is complete.</b><br>" +
+       "We have analysed your interests, strengths, activities and favourite subjects." +
+       "<br><br>" +
+       "Your personalised <b>career pathways and recommendations are now ready.</b>" +
+       "</div>",
+     confirmButtonText:"✨ Show My Results",
+     confirmButtonColor:"#2563eb",
+     allowOutsideClick:false,
+     allowEscapeKey:false,
+     width:"560px"
+   }).then(()=>{
+     resultsSection.style.display="block";
+     resultsSection.scrollIntoView({behavior:"smooth",block:"start"});
+   });
+ }else{
+   // Fallback if SweetAlert2 cannot load.
+   alert("🎉 Congratulations, "+learnerName+"! Your career assessment is complete. Your personalised results are ready.");
+   resultsSection.style.display="block";
+   resultsSection.scrollIntoView({behavior:"smooth",block:"start"});
+ }
 }
 function renderPathways(paths){
  const max=Math.max(...paths.map(x=>x[1]),1),box=document.getElementById("pathwayCards");box.innerHTML="";
@@ -705,66 +737,66 @@ function careerIcon(name){
 // The same image is used in the career card and the View Career modal.
 // ================================================================
 const CAREER_PHOTOS={
-  "Software Developer":"https://i.imgur.com/l5agXs6.jpeg",
-  "Data Scientist":"",
-  "Electrical Engineer":"",
-  "Mechanical Engineer":"",
-  "Civil Engineer":"",
-  "Architect":"",
-  "Medical Doctor":"",
-  "Laboratory Scientist":"",
-  "Environmental Scientist":"",
-  "Agricultural Scientist":"",
-  "Lawyer":"",
-  "Teacher":"",
-  "Journalist":"",
-  "Entrepreneur":"",
-  "Accountant":"",
-  "Psychologist / Counsellor":"",
-  "Human Resource Manager":"",
-  "Public Relations Officer":"",
-  "Graphic Designer":"",
-  "Musician / Music Producer":"",
-  "Actor / Theatre Artist":"",
-  "Dancer / Choreographer":"",
-  "Photographer / Videographer":"",
-  "Animator":"",
-  "Fashion Designer":"",
-  "Professional Athlete":"",
-  "Sports Coach":"",
-  "Fitness Trainer":"",
-  "Sports Journalist":"",
-  "Sports Manager":"",
-  "Robotics Engineer":"",
-  "Cybersecurity Specialist":"",
-  "Network Engineer":"",
-  "Web Developer":"",
-  "Biomedical Scientist":"",
-  "Pharmacist":"",
-  "Nurse":"",
-  "Veterinary Doctor":"",
-  "Quantity Surveyor":"",
-  "Automotive Engineer":"",
-  "Aviation Technician":"",
-  "Geologist":"",
-  "Economist":"",
-  "Marketing Specialist":"",
-  "Social Worker":"",
-  "Diplomat / International Relations Specialist":"",
-  "Translator / Interpreter":"",
-  "Editor":"",
-  "Content Creator":"",
-  "Interior Designer":"",
-  "Illustrator":"",
-  "Sound Engineer":"",
-  "Radio Presenter":"",
-  "Film Director":"",
-  "Sports Physiotherapist":"",
-  "Sports Nutritionist":"",
-  "Referee / Sports Official":"",
-  "Event Manager":"",
-  "Chef / Food Entrepreneur":"",
-  "Tourism Manager":""
+  "Software Developer":"https://i.imgur.com/DqO3Cps.jpeg",
+  "Data Scientist":"https://i.imgur.com/wJKJ7RC.jpeg",
+  "Electrical Engineer":"https://i.imgur.com/SnWSflv.jpeg",
+  "Mechanical Engineer":"https://i.imgur.com/JYpSwCt.jpeg",
+  "Civil Engineer":"https://i.imgur.com/YjaI7Mf.jpeg",
+  "Architect":"https://i.imgur.com/y7na1Fi.jpeg",
+  "Medical Doctor":"https://i.imgur.com/y13lptK.jpeg",
+  "Laboratory Scientist":"https://i.imgur.com/OPZBmJm.jpeg",
+  "Environmental Scientist":"https://i.imgur.com/KI01RZu.jpeg",
+  "Agricultural Scientist":"https://i.imgur.com/9Fxiv3I.jpeg",
+  "Lawyer":"https://i.imgur.com/odJbhJr.jpeg",
+  "Teacher":"https://i.imgur.com/3cnCKlY.jpeg",
+  "Journalist":"https://i.imgur.com/NmAD7qe.jpeg",
+  "Entrepreneur":"https://i.imgur.com/9Ko7GpT.jpeg",
+  "Accountant":"https://i.imgur.com/9Ko7GpT.jpeg",
+  "Psychologist / Counsellor":"https://i.imgur.com/WuIdJF0.jpeg",
+  "Human Resource Manager":"https://i.imgur.com/5RmVChe.jpeg",
+  "Public Relations Officer":"https://i.imgur.com/ChhF0rW.jpeg",
+  "Graphic Designer":"https://i.imgur.com/G7hIhyZ.jpeg",
+  "Musician / Music Producer":"https://i.imgur.com/EPyWvbw.jpeg",
+  "Actor / Theatre Artist":"https://i.imgur.com/EZ1WGxK.jpeg",
+  "Dancer / Choreographer":"https://i.imgur.com/rYraT9M.jpeg",
+  "Photographer / Videographer":"https://i.imgur.com/RsPRL4G.jpeg",
+  "Animator":"https://i.imgur.com/YJjBDL9.jpeg",
+  "Fashion Designer":"https://i.imgur.com/HsdITYq.jpeg",
+  "Professional Athlete":"https://i.imgur.com/AuiNGCN.jpeg",
+  "Sports Coach":"https://i.imgur.com/6jwuZRG.jpeg",
+  "Fitness Trainer":"https://i.imgur.com/J2DiWmu.jpeg",
+  "Sports Journalist":"https://i.imgur.com/hRu1pNC.jpeg",
+  "Sports Manager":"https://i.imgur.com/6jwuZRG.jpeg",
+  "Robotics Engineer":"https://i.imgur.com/Poo6z4F.jpeg",
+  "Cybersecurity Specialist":"https://i.imgur.com/O2x2ncU.jpeg",
+  "Network Engineer":"https://i.imgur.com/lH48Eq9.jpeg",
+  "Web Developer":"https://i.imgur.com/Y8kJLKx.jpeg",
+  "Biomedical Scientist":"https://i.imgur.com/MCMJgUe.jpeg",
+  "Pharmacist":"https://i.imgur.com/ju2u1P1.jpeg",
+  "Nurse":"https://i.imgur.com/ScKGbZ3.jpeg",
+  "Veterinary Doctor":"https://i.imgur.com/9oN7hqF.jpeg",
+  "Quantity Surveyor":"https://i.imgur.com/afryIPl.jpeg",
+  "Automotive Engineer":"https://i.imgur.com/NEeJiMB.jpeg",
+  "Aviation Technician":"https://i.imgur.com/1eW3IYO.jpeg",
+  "Geologist":"https://i.imgur.com/nozflK0.jpeg",
+  "Economist":"https://i.imgur.com/YKgx5vL.jpeg",
+  "Marketing Specialist":"https://i.imgur.com/BOrpS9A.jpeg",
+  "Social Worker":"https://i.imgur.com/vMSp9P1.jpeg",
+  "Diplomat / International Relations Specialist":"https://i.imgur.com/fsOdUgq.jpeg",
+  "Translator / Interpreter":"https://i.imgur.com/CdJ2kAI.jpeg",
+  "Editor":"https://i.imgur.com/bb5eNUe.jpeg",
+  "Content Creator":"https://i.imgur.com/WFRQgUT.jpeg",
+  "Interior Designer":"https://i.imgur.com/rYytU8v.jpeg",
+  "Illustrator":"https://i.imgur.com/YMXHOy7.jpeg",
+  "Sound Engineer":"https://i.imgur.com/wjGsUDt.jpeg",
+  "Radio Presenter":"https://i.imgur.com/5jQqpvL.jpeg",
+  "Film Director":"https://i.imgur.com/SxBu4XE.jpeg",
+  "Sports Physiotherapist":"https://i.imgur.com/WuIdJF0.jpeg",
+  "Sports Nutritionist":"https://i.imgur.com/ik1Vi3N.jpeg",
+  "Referee / Sports Official":"https://i.imgur.com/n9p01HD.jpeg",
+  "Event Manager":"https://i.imgur.com/X9ZBiW9.jpeg",
+  "Chef / Food Entrepreneur":"https://i.imgur.com/MWYyo0Y.jpeg",
+  "Tourism Manager":"https://i.imgur.com/JP6WQcM.jpeg"
 };
 function careerPhotoUrl(name){
   const custom=CAREER_PHOTOS[String(name)]||"";
